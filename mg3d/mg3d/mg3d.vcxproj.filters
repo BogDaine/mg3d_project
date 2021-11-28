@@ -5,18 +5,56 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\opengl_boilerplate">
+      <UniqueIdentifier>{0b2898c8-5982-42f5-9fb7-00760401dcd9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Header Files\opengl_boilerplate">
+      <UniqueIdentifier>{5f150803-03b4-44d8-86ef-721fddbd9c27}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{538ab637-5e2b-4900-8958-c312215cfc21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="opengl_boilerplate\VertexArray.cpp">
+      <Filter>Source Files\opengl_boilerplate</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_boilerplate\VertexBuffer.cpp">
+      <Filter>Source Files\opengl_boilerplate</Filter>
+    </ClCompile>
+    <ClCompile Include="opengl_boilerplate\IndexArray.cpp">
+      <Filter>Source Files\opengl_boilerplate</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="opengl_boilerplate\GLCall.h">
+      <Filter>Header Files\opengl_boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\VertexBuffer.h">
+      <Filter>Header Files\opengl_boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\VertexBufferLayout.h">
+      <Filter>Header Files\opengl_boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\VertexStruct.h">
+      <Filter>Header Files\opengl_boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\IndexArray.h">
+      <Filter>Header Files\opengl_boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\VertexArray.h">
+      <Filter>Header Files\opengl_boilerplate</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
