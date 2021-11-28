@@ -147,12 +147,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="glfwstuff.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="opengl_boilerplate\IndexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexBuffer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Cfg.h" />
+    <ClInclude Include="glfwstuff.h" />
     <ClInclude Include="opengl_boilerplate\GLCall.h" />
     <ClInclude Include="opengl_boilerplate\IndexArray.h" />
     <ClInclude Include="opengl_boilerplate\VertexArray.h" />

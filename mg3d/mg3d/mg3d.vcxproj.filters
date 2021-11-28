@@ -36,6 +36,9 @@
     <ClCompile Include="opengl_boilerplate\IndexArray.cpp">
       <Filter>Source Files\opengl_boilerplate</Filter>
     </ClCompile>
+    <ClCompile Include="glfwstuff.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opengl_boilerplate\GLCall.h">
@@ -55,6 +58,12 @@
     </ClInclude>
     <ClInclude Include="opengl_boilerplate\VertexArray.h">
       <Filter>Header Files\opengl_boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="glfwstuff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cfg.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
