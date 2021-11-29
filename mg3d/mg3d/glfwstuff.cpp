@@ -21,6 +21,8 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 		exit(-1);
 	}
 	
+	glfwSwapInterval(1);
+
 	GLCall(glEnable(GL_DEPTH_TEST));
 	GLCall(glEnable(GL_BLEND));
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
