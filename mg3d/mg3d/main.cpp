@@ -6,13 +6,9 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
-
-
-	
 	GLFWwindow* window;
-	InitWindow(window, "s");
-	while (1);
+	InitWindow(window, "titlu imaginativ");
+	WindowLoop(window);
 
     return 0;
 }

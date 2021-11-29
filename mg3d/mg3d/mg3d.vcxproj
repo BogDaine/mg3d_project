@@ -152,6 +152,7 @@
     <ClCompile Include="opengl_boilerplate\IndexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexBuffer.cpp" />
+    <ClCompile Include="Renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Cfg.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="opengl_boilerplate\VertexBuffer.h" />
     <ClInclude Include="opengl_boilerplate\VertexBufferLayout.h" />
     <ClInclude Include="opengl_boilerplate\VertexStruct.h" />
+    <ClInclude Include="Renderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
