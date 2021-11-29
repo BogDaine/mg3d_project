@@ -13,6 +13,11 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 	}
 
 	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title.c_str(), NULL, NULL);
+
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
+	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
+	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+
 	glfwMakeContextCurrent(window);
 	
 	if (glewInit() != GLEW_OK)
@@ -36,7 +41,6 @@ void WindowLoop(GLFWwindow*& window)
 	while (!glfwWindowShouldClose(window))
 	{
 		Renderer::Clear();
-		//GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 		//draw everything here, or in separate function(s) called here, probably
 
