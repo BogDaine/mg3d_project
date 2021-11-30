@@ -33,6 +33,7 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 				break;
 			case eInputMode::MENU:
 				SetInputMode(eInputMode::CAMERA_FIRST_PERSON);
+				m_BoundCamera->SetFirstMouseMove(true);
 				break;
 			}
 		}

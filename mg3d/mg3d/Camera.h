@@ -45,6 +45,7 @@ public:
     
     void ProcessMouseScroll(float yOffset);
     
+    void SetFirstMouseMove(const bool&);
 
 private:
     void ProcessMouseMovement(float xOffset, float yOffset, bool constrainPitch = true);

@@ -126,6 +126,11 @@ void Camera::ProcessMouseScroll(float yOffset)
         FoVy = 90.0f;
 }
 
+void Camera::SetFirstMouseMove(const bool&value)
+{
+    bFirstMouseMove = value;
+}
+
 void Camera::ProcessMouseMovement(float xOffset, float yOffset, bool constrainPitch)
 {
     yaw += xOffset;
