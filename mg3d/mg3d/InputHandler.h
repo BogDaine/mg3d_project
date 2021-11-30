@@ -16,15 +16,19 @@ protected:
 	GLFWwindow* m_BoundWindow;
 	Camera* m_BoundCamera;
 	
-	bool key_pressed[255] = { false };
+	int m_InputMode = eInputMode::CAMERA_FIRST_PERSON;
+
+	bool key_pressed[360] = { false };
 
 public:
 
-	InputHandler(GLFWwindow*);
+	InputHandler(GLFWwindow*, Camera*);
 
 	void KeyEvent(int key, int scancode, int action, int mods);
 
 	void MousePosEvent(double xpos, double ypos);
+
+	void SetInputMode(const int& mode);
 
 	static void KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 	

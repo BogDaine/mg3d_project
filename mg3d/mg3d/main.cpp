@@ -21,7 +21,7 @@ int main()
 	glfwGetWindowSize(window, &width, &height);
 	Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 0.0f, 0.0f));
 
-    InputHandler input(window);
+    InputHandler input(window, pCamera);
 
     std::vector<std::string> faces
     {
