@@ -2,6 +2,8 @@
 #include "Cfg.h"
 #include "Renderer.h"
 
+
+
 #include <iostream>
 
 void InitWindow(GLFWwindow* (&window), const std::string& title)
@@ -36,13 +38,14 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 
 }
 
-void WindowLoop(GLFWwindow*& window)
+void WindowLoop(GLFWwindow*& window, Scene& scene, Camera*& pCamera)
 {
 	while (!glfwWindowShouldClose(window))
 	{
 		Renderer::Clear();
 
 		//draw everything here, or in separate function(s) called here, probably
+		Renderer::DrawScene(scene, pCamera);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

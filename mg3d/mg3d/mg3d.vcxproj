@@ -147,15 +147,21 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Camera.cpp" />
     <ClCompile Include="glfwstuff.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="opengl_boilerplate\IndexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexBuffer.cpp" />
     <ClCompile Include="Renderer.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Skybox.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Camera.h" />
     <ClInclude Include="Cfg.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="glfwstuff.h" />
     <ClInclude Include="opengl_boilerplate\GLCall.h" />
     <ClInclude Include="opengl_boilerplate\IndexArray.h" />
@@ -164,6 +170,14 @@
     <ClInclude Include="opengl_boilerplate\VertexBufferLayout.h" />
     <ClInclude Include="opengl_boilerplate\VertexStruct.h" />
     <ClInclude Include="Renderer.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="Simulation.h" />
+    <ClInclude Include="Skybox.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\shaders\skybox_frag.shader" />
+    <None Include="..\shaders\skybox_vert.shader" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
