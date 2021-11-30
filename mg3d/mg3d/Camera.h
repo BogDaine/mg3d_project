@@ -31,6 +31,7 @@ public:
 
     void Reset(const int width, const int height);
 
+    void Update();
 
     const glm::mat4 GetViewMatrix() const;
 

@@ -6,6 +6,7 @@
 
 #include "glfwstuff.h"
 
+
 int main()
 {
 	GLFWwindow* window;
@@ -19,6 +20,8 @@ int main()
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
 	Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 0.0f, 0.0f));
+
+    InputHandler input(window);
 
     std::vector<std::string> faces
     {

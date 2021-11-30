@@ -51,6 +51,11 @@ Skybox::Skybox(std::vector<std::string>& faces)
 
 }
 
+Skybox::~Skybox()
+{
+    glDeleteTextures(1, &m_TextureID);
+}
+
 void Skybox::Draw(Camera *pCamera)
 {
 

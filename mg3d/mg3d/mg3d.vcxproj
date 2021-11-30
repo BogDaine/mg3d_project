@@ -149,6 +149,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="glfwstuff.cpp" />
+    <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="opengl_boilerplate\IndexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexArray.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="Cfg.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="glfwstuff.h" />
+    <ClInclude Include="InputHandler.h" />
     <ClInclude Include="opengl_boilerplate\GLCall.h" />
     <ClInclude Include="opengl_boilerplate\IndexArray.h" />
     <ClInclude Include="opengl_boilerplate\VertexArray.h" />

@@ -16,6 +16,11 @@ void Scene::SetSkybox(std::vector<std::string>& faces)
 	m_Skybox = new Skybox(faces);
 }
 
+void Scene::Update()
+{
+
+}
+
 void Scene::Draw(Camera* pCamera)
 {
 	if(m_Skybox) m_Skybox->Draw(pCamera);

@@ -4,6 +4,7 @@
 
 
 
+
 #include <iostream>
 
 void InitWindow(GLFWwindow* (&window), const std::string& title)
@@ -15,6 +16,9 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 	}
 
 	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title.c_str(), NULL, NULL);
+
+	
+
 
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
@@ -34,7 +38,15 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 	GLCall(glEnable(GL_BLEND));
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
 	GLCall(glClearColor(0.5, 0.7, 0.4, 1.0));
-	//TO DO: set up input callbacks
+	
+	//set up input callbacks
+
+
+	//glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+	glfwSetCursorPosCallback(window, mgInput::MouseCallback);
+	//glfwSetScrollCallback(window, scroll_callback);
+	glfwSetKeyCallback(window, mgInput::KeyCallback);
+
 
 }
 
@@ -46,6 +58,9 @@ void WindowLoop(GLFWwindow*& window, Scene& scene, Camera*& pCamera)
 
 		//draw everything here, or in separate function(s) called here, probably
 		Renderer::DrawScene(scene, pCamera);
+
+		scene.Update();
+		pCamera->Update();
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

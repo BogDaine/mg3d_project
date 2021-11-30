@@ -36,6 +36,11 @@ void Camera::Reset(const int width, const int height)
     Set(width, height, startPosition);
 }
 
+void Camera::Update()
+{
+    UpdateCameraVectors();
+}
+
 const glm::mat4 Camera::GetViewMatrix() const
 {
     // Returns the View Matrix

@@ -14,6 +14,8 @@ public:
 
 	Skybox(std::vector<std::string>&);
 	
+	~Skybox();
+
 	void Draw(Camera*);
 	
 	static GLuint LoadCubemap(std::vector<std::string>&);
