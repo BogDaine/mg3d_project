@@ -3,6 +3,8 @@
 #include "Renderer.h"
 #include "Camera.h"
 
+#include "Texture.h"
+
 class Skybox
 {
 protected:

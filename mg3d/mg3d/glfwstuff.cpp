@@ -15,7 +15,7 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 		exit(-1);
 	}
 
-	window = glfwCreateWindow(WINDOW_WIDTH, WINDOW_HEIGHT, title.c_str(), NULL, NULL);
+	window = glfwCreateWindow(cfg::GetWindowWidth(), cfg::GetWindowHeight(), title.c_str(), NULL, NULL);
 
 	
 
@@ -46,6 +46,8 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 	glfwSetCursorPosCallback(window, mgInput::MouseCallback);
 	//glfwSetScrollCallback(window, scroll_callback);
 	glfwSetKeyCallback(window, mgInput::KeyCallback);
+
+	Renderer::Init();
 
 
 }

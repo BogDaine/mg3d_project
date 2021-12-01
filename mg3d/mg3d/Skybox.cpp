@@ -1,9 +1,9 @@
 #include "Skybox.h"
 #include "Cube.h"
 
+//#define STB_IMAGE_IMPLEMENTATION
 
-#define STB_IMAGE_IMPLEMENTATION
-#include "stb/stb_image.h"
+
 
 static bool initialised = false;
 static VertexBuffer *VBO;

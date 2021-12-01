@@ -10,11 +10,18 @@
 #include "Scene.h"
 #include "Camera.h"
 
+#include "FrameBuffer.h"
+
+#include "PostProcessing.h"
+
 class Scene;
 
 namespace Renderer
 {
+
 	void Clear();
 
 	void DrawScene(Scene&, Camera*&);
+
+	void Init();
 }

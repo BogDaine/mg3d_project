@@ -53,7 +53,3 @@ private:
     std::unordered_map<std::string, int> uniformLocationCache;
 };
 
-namespace shaders
-{
-
-}
