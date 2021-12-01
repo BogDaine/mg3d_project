@@ -60,6 +60,13 @@ void Shader::SetFloat(const std::string& name, const float& value)
     glUniform1f(location, value);
 }
 
+void Shader::SetInt(const std::string& name, const int& value)
+{
+    Use();
+    int location = GetUniformLocation(name);
+    glUniform1i(location, value);
+}
+
 void Shader::Init(const char* vertexPath, const char* fragmentPath)
 {
     // 1. retrieve the vertex/fragment source code from filePath

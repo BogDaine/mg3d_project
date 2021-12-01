@@ -148,5 +148,11 @@
     <None Include="..\shaders\postprocess\black_and_white_frag.shader">
       <Filter>Shaders\Postprocessing</Filter>
     </None>
+    <None Include="..\shaders\postprocess\kernel_frag.shader">
+      <Filter>Shaders\Postprocessing</Filter>
+    </None>
+    <None Include="..\shaders\postprocess\no_effects_frag.shader">
+      <Filter>Shaders\Postprocessing</Filter>
+    </None>
   </ItemGroup>
 </Project>

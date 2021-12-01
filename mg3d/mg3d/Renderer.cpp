@@ -19,9 +19,11 @@ void Renderer::DrawScene(Scene& scene, Camera*& pCamera)
 
 	glDisable(GL_DEPTH_TEST);
 
-	FBO->Unbind();
 
+	PostProcess::Kernel(FBO->GetTexture());
 	PostProcess::BlackAndWhite(FBO->GetTexture());
+	FBO->Unbind();
+	PostProcess::NoEffects(FBO->GetTexture());
 }
 
 void Renderer::Init()

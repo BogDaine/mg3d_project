@@ -21,7 +21,6 @@ public:
     void Bind() const;
     void Unbind() const;
 
-    void Unbind();
 
     unsigned int GetID() const;
 
@@ -38,6 +37,8 @@ public:
     void SetMat4(const std::string& name, const glm::mat4& mat);
     
     void SetFloat(const std::string& name, const float& value);
+
+    void SetInt(const std::string& name, const int& value);
 
 private:
     void Init(const char* vertexPath, const char* fragmentPath);
