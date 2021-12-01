@@ -149,9 +149,12 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cfg.cpp" />
+    <ClCompile Include="Entity.cpp" />
     <ClCompile Include="glfwstuff.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Model.cpp" />
     <ClCompile Include="opengl_boilerplate\FrameBuffer.cpp" />
     <ClCompile Include="opengl_boilerplate\IndexArray.cpp" />
     <ClCompile Include="opengl_boilerplate\VertexArray.cpp" />
@@ -161,14 +164,18 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="Skybox.cpp" />
+    <ClCompile Include="Submarine.cpp" />
     <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cfg.h" />
     <ClInclude Include="Cube.h" />
+    <ClInclude Include="Entity.h" />
     <ClInclude Include="glfwstuff.h" />
     <ClInclude Include="InputHandler.h" />
+    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Model.h" />
     <ClInclude Include="opengl_boilerplate\FrameBuffer.h" />
     <ClInclude Include="opengl_boilerplate\GLCall.h" />
     <ClInclude Include="opengl_boilerplate\IndexArray.h" />
@@ -182,6 +189,7 @@
     <ClInclude Include="Shader.h" />
     <ClInclude Include="Simulation.h" />
     <ClInclude Include="Skybox.h" />
+    <ClInclude Include="Submarine.h" />
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>

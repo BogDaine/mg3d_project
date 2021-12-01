@@ -21,7 +21,7 @@ namespace Renderer
 
 	void Clear();
 
-	void DrawScene(Scene&, Camera*&);
+	void DrawScene(Scene&, Camera*);
 
 	void Init();
 }

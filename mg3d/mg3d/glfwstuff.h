@@ -7,5 +7,5 @@
 #include "InputHandler.h"
 #include <string>
 
-void InitWindow(GLFWwindow*&, const std::string&);
-void WindowLoop(GLFWwindow*&, Scene&, Camera*&);
+void InitWindow(GLFWwindow* &, const std::string&);
+void WindowLoop(GLFWwindow*, Scene&, Camera*);

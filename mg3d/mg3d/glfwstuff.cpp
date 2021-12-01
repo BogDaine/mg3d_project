@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-void InitWindow(GLFWwindow* (&window), const std::string& title)
+void InitWindow(GLFWwindow* &window, const std::string& title)
 {
 	if (!glfwInit())
 	{
@@ -52,7 +52,7 @@ void InitWindow(GLFWwindow* (&window), const std::string& title)
 
 }
 
-void WindowLoop(GLFWwindow*& window, Scene& scene, Camera*& pCamera)
+void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera)
 {
 	while (!glfwWindowShouldClose(window))
 	{
