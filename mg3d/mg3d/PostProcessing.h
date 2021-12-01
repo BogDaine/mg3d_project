@@ -5,7 +5,8 @@
 
 
 
-namespace Renderer
+namespace PostProcess
 {
+	void Init();
 	void BlackAndWhite(const unsigned int&);
 }

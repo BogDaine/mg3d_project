@@ -5,6 +5,10 @@
 
 FrameBuffer::FrameBuffer()
 {
+
+	glGenFramebuffers(1, &m_ID);
+	glBindFramebuffer(GL_FRAMEBUFFER, m_ID);
+
 	glGenTextures(1, &m_TextureID);
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, cfg::GetWindowWidth(), cfg::GetWindowHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
@@ -32,13 +36,12 @@ FrameBuffer::~FrameBuffer()
 	glDeleteRenderbuffers(1, &m_RenderBuffer);
 	glDeleteFramebuffers(1, &m_ID);
 }
-
-inline const unsigned int FrameBuffer::GetID() const
+unsigned int FrameBuffer::GetID()
 {
 	return m_ID;
 }
 
-inline const unsigned int FrameBuffer::GetTexture() const
+unsigned int FrameBuffer::GetTexture()
 {
 	return m_TextureID;
 }

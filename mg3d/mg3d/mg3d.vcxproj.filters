@@ -25,6 +25,9 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{616bdc70-89f7-421d-b5e0-42c0f0de63e6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\Postprocessing">
+      <UniqueIdentifier>{066efda6-af15-4f18-bb20-8787a996ddbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -138,6 +141,12 @@
     </None>
     <None Include="..\shaders\skybox_frag.shader">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\shaders\postprocess\default_vert.shader">
+      <Filter>Shaders\Postprocessing</Filter>
+    </None>
+    <None Include="..\shaders\postprocess\black_and_white_frag.shader">
+      <Filter>Shaders\Postprocessing</Filter>
     </None>
   </ItemGroup>
 </Project>

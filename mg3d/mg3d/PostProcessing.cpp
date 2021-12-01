@@ -9,7 +9,7 @@ static VertexBufferLayout* layout;
 
 namespace shaders
 {
-	Shader* BlackAndWhite;
+	Shader* BlackAndWhite = nullptr;
 }
 
 
@@ -30,7 +30,7 @@ namespace PostPr
 }
 
 
-static void init()
+void PostProcess::Init()
 {
 
     VBO = new VertexBuffer;
@@ -50,11 +50,20 @@ static void init()
     initialised = true;
 }
 
-void Renderer::BlackAndWhite(const unsigned int&)
+void PostProcess::BlackAndWhite(const unsigned int&texture)
 {
-	if (!initialised)
-		init();
+	if (shaders::BlackAndWhite == nullptr)
+	{
+		shaders::BlackAndWhite = new Shader("..\\shaders\\postprocess\\default_vert.shader",
+											"..\\shaders\\postprocess\\black_and_white_frag.shader");
+	}
 
+	shaders::BlackAndWhite->Bind();
+	
+	VAO->bind();
 
+	glBindTexture(GL_TEXTURE_2D, texture);
+	glDrawArrays(GL_TRIANGLES, 0, 6);
+	VAO->unbind();
 
 }

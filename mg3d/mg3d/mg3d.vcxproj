@@ -185,6 +185,8 @@
     <ClInclude Include="Texture.h" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\shaders\postprocess\black_and_white_frag.shader" />
+    <None Include="..\shaders\postprocess\default_vert.shader" />
     <None Include="..\shaders\skybox_frag.shader" />
     <None Include="..\shaders\skybox_vert.shader" />
   </ItemGroup>

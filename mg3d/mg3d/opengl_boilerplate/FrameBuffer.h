@@ -17,8 +17,8 @@ public:
 	FrameBuffer();
 	~FrameBuffer();
 	
-	inline const unsigned int GetID() const;
-	inline const unsigned int GetTexture() const;
+	inline unsigned int GetID();
+	unsigned int GetTexture();
 	inline const unsigned int GetRenderBuffer() const;
 
 	void Bind();
