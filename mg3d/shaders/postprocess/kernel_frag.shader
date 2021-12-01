@@ -8,8 +8,8 @@ uniform float scr_width;
 
 uniform sampler2D screenTexture;
 
-const float offset_x = 1.0f / 800.0f;
-const float offset_y = 1.0f / 800.0f;
+const float offset_x = 1.0f / scr_width;
+const float offset_y = 1.0f / scr_height;
 
 vec2 offsets[9] = vec2[]
 (
@@ -20,9 +20,9 @@ vec2 offsets[9] = vec2[]
 
 float kernel[9] = float[]
 (
-    0, -1, 0,
-    -1, 5, -1,
-    0, -1, 0
+    1 / 9, 1 / 9, 1 / 9,
+    1/9, 1/9, 1/9,
+    1 / 9, 1 / 9, 1 / 9
     );
 
 void main()
