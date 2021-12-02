@@ -1,5 +1,6 @@
 #pragma once
 #include "Renderer.h"
+#include "Lighting.h"
 #include "Maths.h"
 #include <fstream>
 #include <sstream>
@@ -36,9 +37,13 @@ public:
     
     void SetMat4(const std::string& name, const glm::mat4& mat);
     
+    void SetMat3(const std::string& name, const glm::mat3& mat);
+
     void SetFloat(const std::string& name, const float& value);
 
     void SetInt(const std::string& name, const int& value);
+
+    void SetLight(const Light& val, const std::string& name = "light");
 
 private:
     void Init(const char* vertexPath, const char* fragmentPath);

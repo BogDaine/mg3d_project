@@ -12,21 +12,20 @@
     <Filter Include="Source Files\opengl_boilerplate">
       <UniqueIdentifier>{0b2898c8-5982-42f5-9fb7-00760401dcd9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Header Files\opengl_boilerplate">
-      <UniqueIdentifier>{5f150803-03b4-44d8-86ef-721fddbd9c27}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\Utility">
-      <UniqueIdentifier>{538ab637-5e2b-4900-8958-c312215cfc21}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Shaders">
       <UniqueIdentifier>{616bdc70-89f7-421d-b5e0-42c0f0de63e6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Shaders\Postprocessing">
       <UniqueIdentifier>{066efda6-af15-4f18-bb20-8787a996ddbe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{1e8dfed2-acd3-44ce-80e2-c35fe00b46db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Utility">
+      <UniqueIdentifier>{aa74a6f0-d97b-4ba4-9b54-54ebe3ce3275}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\OpenGL Boilerplate">
+      <UniqueIdentifier>{2f3025c1-1352-4c64-84db-729b42aaf864}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -72,9 +71,6 @@
     <ClCompile Include="PostProcessing.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Cfg.cpp">
-      <Filter>Header Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,77 +83,15 @@
     <ClCompile Include="Submarine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="opengl_boilerplate\GLCall.h">
-      <Filter>Header Files\opengl_boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl_boilerplate\VertexBuffer.h">
-      <Filter>Header Files\opengl_boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl_boilerplate\VertexBufferLayout.h">
-      <Filter>Header Files\opengl_boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl_boilerplate\VertexStruct.h">
-      <Filter>Header Files\opengl_boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl_boilerplate\IndexArray.h">
-      <Filter>Header Files\opengl_boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl_boilerplate\VertexArray.h">
-      <Filter>Header Files\opengl_boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="glfwstuff.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cfg.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Renderer.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Shader.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Skybox.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Cube.h">
-      <Filter>Header Files\Utility</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulation.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="InputHandler.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="opengl_boilerplate\FrameBuffer.h">
-      <Filter>Header Files\opengl_boilerplate</Filter>
-    </ClInclude>
-    <ClInclude Include="Texture.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PostProcessing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Submarine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="Cfg.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Models.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Shaders.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\shaders\skybox_vert.shader">
@@ -178,5 +112,85 @@
     <None Include="..\shaders\postprocess\no_effects_frag.shader">
       <Filter>Shaders\Postprocessing</Filter>
     </None>
+    <None Include="..\shaders\obj_default_frag.shader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\shaders\obj_default_vert.shader">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="opengl_boilerplate\VertexArray.h">
+      <Filter>Header Files\OpenGL Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\VertexBuffer.h">
+      <Filter>Header Files\OpenGL Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\VertexBufferLayout.h">
+      <Filter>Header Files\OpenGL Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\VertexStruct.h">
+      <Filter>Header Files\OpenGL Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\FrameBuffer.h">
+      <Filter>Header Files\OpenGL Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\GLCall.h">
+      <Filter>Header Files\OpenGL Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="opengl_boilerplate\IndexArray.h">
+      <Filter>Header Files\OpenGL Boilerplate</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Models.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PostProcessing.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Renderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Submarine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="glfwstuff.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="InputHandler.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Mesh.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Cfg.h">
+      <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Shaders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Lighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

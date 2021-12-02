@@ -1,4 +1,5 @@
 #include "Skybox.h"
+#include "Shaders.h"
 #include "Cube.h"
 
 //#define STB_IMAGE_IMPLEMENTATION
@@ -64,11 +65,10 @@ void Skybox::Draw(Camera *pCamera)
     // ... set view and projection matrix
     shaders::SkyboxShader->Bind();
 
-    auto view_mat = glm::mat4(glm::mat3(pCamera->GetViewMatrix()));
-    auto proj_mat = pCamera->GetProjectionMatrix();
+    shaders::SkyboxShader->SetMat4("view", glm::mat4(glm::mat3(pCamera->GetViewMatrix())));
+    shaders::SkyboxShader->SetMat4("projection", pCamera->GetProjectionMatrix());
 
-    shaders::SkyboxShader->SetMat4("projection", proj_mat);
-    shaders::SkyboxShader->SetMat4("view", view_mat);
+
 
     VAO->bind();
     IBO->bind();
@@ -86,6 +86,8 @@ GLuint Skybox::LoadCubemap(std::vector<std::string>& faces)
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
 
+    stbi_set_flip_vertically_on_load(false);
+
     int width, height, nrChannels;
     for (unsigned int i = 0; i < faces.size(); i++)
     {
@@ -99,7 +101,7 @@ GLuint Skybox::LoadCubemap(std::vector<std::string>& faces)
         }
         else
         {
-            std::cout << "Cubemap tex failed to load at path: " << faces[i] << std::endl;
+            std::cout << "Cubemap texture failed to load at path: " << faces[i] << std::endl;
             stbi_image_free(data);
         }
     }

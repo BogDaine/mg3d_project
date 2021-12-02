@@ -8,6 +8,7 @@ class Entity
 {
 protected:
 	glm::vec3 m_Pos;
+	glm::vec3 m_Rot;
 
 public:
 
@@ -22,9 +23,11 @@ public:
 class VisibleEntity : public Entity
 {
 protected:
+
 	Model* m_Model = nullptr;
 
 	glm::mat4 m_ModelMatrix;
+	glm::mat3 m_NormalMatrix;
 
 public:
 
@@ -34,6 +37,6 @@ public:
 
 	virtual void Draw(Camera*) override {};
 
-	virtual void Update() override {}
+	virtual void Update() override;
 
 };

@@ -53,6 +53,14 @@ void Shader::SetMat4(const std::string& name, const glm::mat4& mat)
     glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(mat));
 }
 
+void Shader::SetMat3(const std::string& name, const glm::mat3& val)
+{
+    Bind();
+    int location = GetUniformLocation(name);
+    GLCall(glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(val)));
+}
+
+
 void Shader::SetFloat(const std::string& name, const float& value)
 {
     Use();
@@ -65,6 +73,22 @@ void Shader::SetInt(const std::string& name, const int& value)
     Use();
     int location = GetUniformLocation(name);
     glUniform1i(location, value);
+}
+
+void Shader::SetLight(const Light& val, const std::string& name)
+{
+    Bind();
+    int location = GetUniformLocation(name + ".position");
+    GLCall(glUniform3f(location, val.position.x, val.position.y, val.position.z));
+
+    location = GetUniformLocation(name + ".ambient");
+    GLCall(glUniform3f(location, val.ambient.x, val.ambient.y, val.ambient.z));
+
+    location = GetUniformLocation(name + ".diffuse");
+    GLCall(glUniform3f(location, val.diffuse.x, val.diffuse.y, val.diffuse.z));
+
+    location = GetUniformLocation(name + ".specular");
+    GLCall(glUniform3f(location, val.specular.x, val.specular.y, val.specular.z));
 }
 
 void Shader::Init(const char* vertexPath, const char* fragmentPath)

@@ -9,6 +9,7 @@
 class FrameBuffer
 {
 	unsigned int m_ID;
+
 	unsigned int m_TextureID;
 
 	unsigned int m_RenderBuffer;

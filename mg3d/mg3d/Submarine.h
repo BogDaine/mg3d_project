@@ -11,4 +11,6 @@ public:
 	Submarine(const glm::vec3&);
 
 	void Draw(Camera*) override;
+
+	void Update() override;
 };

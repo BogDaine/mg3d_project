@@ -23,7 +23,7 @@ public:
 	
 	void SetSkybox(std::vector<std::string>&);
 	
-	void Update();
+	virtual void Update();
 
 	virtual void Draw(Camera* pCamera);
 };

@@ -1,7 +1,8 @@
 #include "glfwstuff.h"
 #include "Cfg.h"
 #include "Renderer.h"
-
+#include "Models.h"
+#include "Shaders.h"
 
 
 
@@ -36,8 +37,10 @@ void InitWindow(GLFWwindow* &window, const std::string& title)
 
 	GLCall(glEnable(GL_DEPTH_TEST));
 	GLCall(glEnable(GL_BLEND));
+	//GLCall(glEnable(GL_TEXTURE_2D));
+
 	GLCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
-	GLCall(glClearColor(0.5, 0.7, 0.4, 1.0));
+	GLCall(glClearColor(1.0, 0.7, 0.4, 1.0));
 	
 	//set up input callbacks
 
@@ -59,7 +62,12 @@ void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera)
 		Renderer::Clear();
 
 		//draw everything here, or in separate function(s) called here, probably
+		
+
+
 		Renderer::DrawScene(scene, pCamera);
+
+
 
 		scene.Update();
 		pCamera->Update();

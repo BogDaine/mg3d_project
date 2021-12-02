@@ -6,6 +6,8 @@
 
 #include "glfwstuff.h"
 
+#include "Models.h"
+#include "Shaders.h"
 
 int main()
 {
@@ -19,7 +21,7 @@ int main()
 	Scene scene;
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
-	Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 0.0f, 0.0f));
+    Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 1.0f, 7.0f));
 
     InputHandler input(window, pCamera);
 
@@ -32,6 +34,12 @@ int main()
             "skybox/front.jpg",
             "skybox/back.jpg"
     };
+
+    models::InitModels();
+    shaders::InitShaders();
+
+    
+
 
     scene.SetSkybox(faces);
 

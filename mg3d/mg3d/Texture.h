@@ -19,10 +19,10 @@ private:
 	std::string fileName;
 	int width, height, channels;
 	unsigned char* data;
-	unsigned int slot = 63;
+	unsigned int slot = 0;
 public:
 	Texture();
-	Texture(const std::string& file, const unsigned int& slot = 63);
+	Texture(const std::string& file, const unsigned int& slot = 0);
 	~Texture();
 
 	void load_from_file(const std::string& file);

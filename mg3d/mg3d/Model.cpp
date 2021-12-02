@@ -172,8 +172,9 @@ std::vector<Texture*> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType
 	return textures;
 }
 
-void Model::Draw(Shader* shader)
+void Model::Draw(Shader& shader)
 {
+	//Renderer renderer;
 	for (unsigned int i = 0; i < meshes.size(); i++)
 	{
 
@@ -189,10 +190,4 @@ void Model::Draw(Shader* shader)
 	//    meshes[i].Draw_by_Renderer(shader);
 	//    //meshes[i].Draw(shader);
 	//}
-}
-
-void Model::Draw()
-{
-	if (m_BoundShader)
-		Draw(m_BoundShader);
 }
