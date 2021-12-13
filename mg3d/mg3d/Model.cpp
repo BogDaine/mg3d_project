@@ -172,7 +172,7 @@ std::vector<Texture*> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType
 	return textures;
 }
 
-void Model::Draw(Shader& shader)
+void Model::Draw(Shader* shader)
 {
 	//Renderer renderer;
 	for (unsigned int i = 0; i < meshes.size(); i++)

@@ -27,7 +27,7 @@ public:
 	{
 		LoadModel(path);
 	}
-	void Draw(Shader& shader);
+	void Draw(Shader* shader);
 };
 
 //#include "Mesh.h"

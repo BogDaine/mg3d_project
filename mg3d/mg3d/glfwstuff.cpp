@@ -3,8 +3,7 @@
 #include "Renderer.h"
 #include "Models.h"
 #include "Shaders.h"
-
-
+#include "TheTime.h"
 
 #include <iostream>
 
@@ -55,10 +54,11 @@ void InitWindow(GLFWwindow* &window, const std::string& title)
 
 }
 
-void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera)
+void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera, InputHandler* inputHandler)
 {
 	while (!glfwWindowShouldClose(window))
 	{
+		TheTime::UpdateDeltaTime();
 		Renderer::Clear();
 
 		//draw everything here, or in separate function(s) called here, probably
@@ -74,5 +74,6 @@ void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera)
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
+		inputHandler->HandleTheInput();
 	}
 }

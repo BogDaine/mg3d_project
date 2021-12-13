@@ -8,4 +8,4 @@
 #include <string>
 
 void InitWindow(GLFWwindow* &, const std::string&);
-void WindowLoop(GLFWwindow*, Scene&, Camera*);
+void WindowLoop(GLFWwindow*, Scene&, Camera*, InputHandler*);

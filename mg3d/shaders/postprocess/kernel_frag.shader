@@ -11,9 +11,9 @@ uniform sampler2D screenTexture;
 
 float kernel[9] = float[]
 (
-    0,0,0,
-    0,1,0,
-    0,0,0
+    -1,-1,-1,
+    -1,8,-1,
+    -1,-1,-1
     );
 
 //float kernel[9] = float[]

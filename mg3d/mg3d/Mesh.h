@@ -20,7 +20,7 @@ public:
 
 	Mesh() {}
 	Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<Texture*> tex);
-	void Draw(Shader& shader);
+	void Draw(Shader *shader);
 	//void Draw_by_Renderer(Shader& shader, Renderer& renderer);
 
 	VertexArray VAO;

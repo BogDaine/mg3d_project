@@ -1,6 +1,8 @@
 #include "InputHandler.h"
 #include "Camera.h"
 
+#include "TheTime.h"
+
 #include <glfw3.h>
 
 #include <iostream>
@@ -15,6 +17,32 @@ InputHandler::InputHandler(GLFWwindow* window, Camera* camera):
 	
 }
 
+void InputHandler::HandleTheInput()
+{
+	switch (m_InputMode)
+	{
+	case eInputMode::CAMERA_FIRST_PERSON:
+
+		if (key_pressed[GLFW_KEY_W])
+			m_BoundCamera->ProcessKeyboard(ECameraMovementType::FORWARD, TheTime::DetlaTime());
+
+		if (key_pressed[GLFW_KEY_S])
+			m_BoundCamera->ProcessKeyboard(ECameraMovementType::BACKWARD, TheTime::DetlaTime());
+
+		if (key_pressed[GLFW_KEY_A])
+			m_BoundCamera->ProcessKeyboard(ECameraMovementType::LEFT, TheTime::DetlaTime());
+
+		if (key_pressed[GLFW_KEY_D])
+			m_BoundCamera->ProcessKeyboard(ECameraMovementType::RIGHT, TheTime::DetlaTime());
+
+
+		break;
+
+	case	eInputMode::MENU:
+		break;
+	}
+}
+
 void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 {
 
@@ -22,23 +50,34 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 	{
 	case GLFW_PRESS:
 		key_pressed[key] = true;
-		//std::cout << key << std::endl;
 
-		if (key == GLFW_KEY_ESCAPE)
+		switch (m_InputMode)
 		{
-			switch (m_InputMode)
+		case eInputMode::CAMERA_FIRST_PERSON:
+			
+			switch (key)
 			{
-			case eInputMode::CAMERA_FIRST_PERSON:
+			case GLFW_KEY_ESCAPE:
 				SetInputMode(eInputMode::MENU);
 				break;
-			case eInputMode::MENU:
+			}
+			
+			break;
+		case eInputMode::MENU:
+
+			switch (key)
+			{
+			case GLFW_KEY_ESCAPE:
 				SetInputMode(eInputMode::CAMERA_FIRST_PERSON);
 				m_BoundCamera->SetFirstMouseMove(true);
 				break;
 			}
+
 		}
 
+
 		break;
+		
 	case GLFW_RELEASE:
 		key_pressed[key] = false;
 		break;

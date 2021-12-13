@@ -24,6 +24,8 @@ public:
 
 	InputHandler(GLFWwindow*, Camera*);
 
+	void HandleTheInput();
+
 	void KeyEvent(int key, int scancode, int action, int mods);
 
 	void MousePosEvent(double xpos, double ypos);

@@ -8,6 +8,18 @@
 
 #include "Models.h"
 #include "Shaders.h"
+#include "Submarine.h"
+
+//TO DO: Submarine controls
+//TO DO: ShadowMapping
+//
+//TO DO: Physics
+//
+//TO DO: Terrain (heightmap, probably)
+//TO DO: Water
+// 
+//TO DO: The posibility of binding the camera to a submarine
+//TO DO: Fishies! :)
 
 int main()
 {
@@ -42,8 +54,12 @@ int main()
 
 
     scene.SetSkybox(faces);
+    Submarine DummySubmarine({ 0, 0, 0 });
+    scene.PushEntity(&DummySubmarine);
 
-	WindowLoop(window, scene, pCamera);
+    DummySubmarine.Rotate(glm::radians(-90.0f), 0, glm::radians(90.0f));
+
+	WindowLoop(window, scene, pCamera, &input);
 
     return 0;
 }

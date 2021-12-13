@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Entity.h"
+#include "Models.h"
 
 class Submarine :public VisibleEntity
 {
@@ -10,7 +11,7 @@ public:
 
 	Submarine(const glm::vec3&);
 
-	void Draw(Camera*) override;
+	void Draw(Shader*) override;
 
 	void Update() override;
 };

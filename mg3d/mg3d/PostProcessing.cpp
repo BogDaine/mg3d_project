@@ -18,28 +18,28 @@ namespace shaders
 
 namespace PostPr
 {
-	float rectangleVertices[] =
-	{
-		// Coords    // texCoords
-		 1.0f, -1.2f,  1.0f, 0.0f,
-		-1.3f, -1.9f,  0.0f, 0.0f,
-		-1.0f,  1.2f,  0.0f, 1.0f,
-
-		 1.2f,  1.0f,  1.0f, 1.0f
-		/* 1.0f, -1.0f,  1.0f, 0.0f,
-		-1.0f,  1.0f,  0.0f, 1.0f*/
-	};
 	//float rectangleVertices[] =
 	//{
 	//	// Coords    // texCoords
-	//	 1.0f, -1.0f,  1.0f, 0.0f,
-	//	-1.0f, -1.0f,  0.0f, 0.0f,
-	//	-1.0f,  1.0f,  0.0f, 1.0f,
+	//	 1.0f, -1.2f,  1.0f, 0.0f,
+	//	-1.3f, -1.9f,  0.0f, 0.0f,
+	//	-1.0f,  1.2f,  0.0f, 1.0f,
 
-	//	 1.0f,  1.0f,  1.0f, 1.f
-	//	 /* 1.0f, -1.0f,  1.0f, 0.0f,
-	//	 -1.0f,  1.0f,  0.0f, 1.0f*/
+	//	 1.2f,  1.0f,  1.0f, 1.0f,
+	//	1.0f, -1.0f,  1.0f, 0.0f,
+	//	-1.0f,  1.0f,  0.0f, 1.0f
 	//};
+	float rectangleVertices[] =
+	{
+		// Coords    // texCoords
+		 1.0f, -1.0f,  1.0f, 0.0f,
+		-1.0f, -1.0f,  0.0f, 0.0f,
+		-1.0f,  1.0f,  0.0f, 1.0f,
+
+		 1.0f,  1.0f,  1.0f, 1.0f,
+		 1.0f, -1.0f,  1.0f, 0.0f,
+		 -1.0f,  1.0f,  0.0f, 1.0f
+	};
 
 }
 

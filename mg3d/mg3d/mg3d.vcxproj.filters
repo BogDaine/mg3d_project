@@ -92,6 +92,9 @@
     <ClCompile Include="Shaders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TheTime.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\shaders\skybox_vert.shader">
@@ -191,6 +194,9 @@
     </ClInclude>
     <ClInclude Include="Lighting.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TheTime.h">
+      <Filter>Header Files\Utility</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

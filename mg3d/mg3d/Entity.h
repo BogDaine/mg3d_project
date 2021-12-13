@@ -9,13 +9,22 @@ class Entity
 protected:
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
+	glm::vec3 m_Scale;
+	float m_ScaleFloat = 1;
 
 public:
 
 	Entity() = default;
 	Entity(const glm::vec3&);
 
-	virtual void Draw(Camera*) {}
+	void Rotate(const float&, const float&, const float&);
+	void rotate(const glm::vec3&);
+
+	void Translate(const float&, const float&, const float&);
+	void Translate(const glm::vec3&);
+
+
+	virtual void Draw(Shader*) {}
 	
 	virtual void Update() {}
 };
@@ -35,7 +44,9 @@ public:
 
 	VisibleEntity(Model*, const glm::vec3&);
 
-	virtual void Draw(Camera*) override {};
+	void SetModel(Model*);
+
+	virtual void Draw(Shader*) override;
 
 	virtual void Update() override;
 

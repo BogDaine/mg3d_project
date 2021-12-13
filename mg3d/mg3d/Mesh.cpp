@@ -9,7 +9,7 @@ Mesh::Mesh(std::vector<Vertex> vert, std::vector<unsigned int> ind, std::vector<
 	setupMesh();
 }
 
-void Mesh::Draw(Shader& shader)
+void Mesh::Draw(Shader *shader)
 {
 	unsigned int diffuseNr = 0;
 	unsigned int normalNr = 0;
@@ -31,7 +31,7 @@ void Mesh::Draw(Shader& shader)
 		else if (name == "texture_height")
 			number = std::to_string(heightNr++); // transfer unsigned int to stream
 
-		shader.SetInt("material." + name + number, i);
+		shader->SetInt("material." + name + number, i);
 
 		//std::cout << textures[i].getPath() << std::endl;
 		//std::cout << std::endl;
@@ -39,11 +39,11 @@ void Mesh::Draw(Shader& shader)
 	//shader.bind();
 	VAO.bind();
 	IBO.bind();
-	shader.Bind();
+	shader->Bind();
 	GLCall(glDrawElements(GL_TRIANGLES, IBO.getCount(), GL_UNSIGNED_INT, nullptr));
 
 	VAO.unbind();
-	shader.Unbind();
+	shader->Unbind();
 	IBO.unbind();
 }
 /*for (unsigned int i = 0; i < textures.size(); i++)

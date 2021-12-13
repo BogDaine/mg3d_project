@@ -1,13 +1,13 @@
 #include "Submarine.h"
 
-static Model* SubmarineModel;
 
 Submarine::Submarine(const glm::vec3& pos):
 	VisibleEntity(pos)
 {
+	SetModel(models::Submarine1);
 }
 
-void Submarine::Draw(Camera* pCamera)
+void Submarine::Draw(Shader* pCamera)
 {
 	this->VisibleEntity::Draw(pCamera);
 }
