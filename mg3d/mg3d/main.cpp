@@ -56,15 +56,17 @@ int main()
     scene.SetSkybox(faces);
     Submarine DummySubmarine({ 0, 0, 0 });
     //scene.PushEntity(&DummySubmarine);
-    
-    for (unsigned int i = 0; i < 10; i++)
+    float pi = glm::pi<float>();
+    float N = 10, M = 10;
+    float r = 200;
+
+    for (float n = 0; n < N; n++)
     {
-        for(unsigned int j = 0; j < 10; j++)
+        for (float m = 0; m < M; m++)
         { 
-            for (unsigned int k = 0; k < 10; k++)
-            {
-                scene.PushEntity(new Submarine({ sin(i) * 100, k * 10, cos(i) * 100 }));
-            }
+            scene.PushEntity(new Submarine(glm::vec3(sin(pi * m/M) * cos(2 * pi * n/N),
+                                            sin(pi * m/M) * sin(2 * pi * n/N),
+                                            cos(pi * m/M) ) * r));
         }
     }
 
