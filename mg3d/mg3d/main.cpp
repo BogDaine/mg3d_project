@@ -55,9 +55,18 @@ int main()
 
     scene.SetSkybox(faces);
     Submarine DummySubmarine({ 0, 0, 0 });
-    scene.PushEntity(&DummySubmarine);
-
-    DummySubmarine.Rotate(glm::radians(-90.0f), 0, glm::radians(90.0f));
+    //scene.PushEntity(&DummySubmarine);
+    
+    for (unsigned int i = 0; i < 10; i++)
+    {
+        for(unsigned int j = 0; j < 10; j++)
+        { 
+            for (unsigned int k = 0; k < 10; k++)
+            {
+                scene.PushEntity(new Submarine({ sin(i) * 100, k * 10, cos(i) * 100 }));
+            }
+        }
+    }
 
 	WindowLoop(window, scene, pCamera, &input);
 
