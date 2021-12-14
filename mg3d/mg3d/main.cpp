@@ -56,7 +56,7 @@ int main()
     scene.SetSkybox(faces);
     Submarine DummySubmarine({ 0, 0, 0 });
     //scene.PushEntity(&DummySubmarine);
-    float pi = glm::pi<float>();
+    constexpr float pi = glm::pi<float>();
     float N = 10, M = 10;
     float r = 200;
 
@@ -69,6 +69,8 @@ int main()
                                             cos(pi * m/M) ) * r));
         }
     }
+
+    scene.InitShadowMap();
 
 	WindowLoop(window, scene, pCamera, &input);
 

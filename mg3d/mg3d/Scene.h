@@ -20,9 +20,13 @@ protected:
 
 	Light m_PointLight1 = lights::WHITE;
 
+	GLuint m_DepthMap = 0;
+	GLuint m_DepthMapFBO = 0;
+	//TO DO:
 	//vector for the lights
 	//(for each type of light, probably)
-	//entities vector
+	//each with its own Depth Map
+
 public:
 	Scene();
 
@@ -32,7 +36,10 @@ public:
 
 	void PushEntity(Entity*);
 	
+	//TO DO: make this per-light
+	void InitShadowMap();
+
 	virtual void Update();
 
-	virtual void Draw(Camera* pCamera, Shader* shader);
+	virtual void Draw(Camera* pCamera, Shader* shader, const GLuint&);
 };

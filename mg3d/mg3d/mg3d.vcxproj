@@ -172,11 +172,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\shaders\obj_default_frag.shader" />
+    <None Include="..\shaders\obj_default_shadows_frag.shader" />
+    <None Include="..\shaders\obj_default_shadows_vert.shader" />
     <None Include="..\shaders\obj_default_vert.shader" />
     <None Include="..\shaders\postprocess\black_and_white_frag.shader" />
     <None Include="..\shaders\postprocess\default_vert.shader" />
     <None Include="..\shaders\postprocess\kernel_frag.shader" />
     <None Include="..\shaders\postprocess\no_effects_frag.shader" />
+    <None Include="..\shaders\ShadowMappingDepth.fs" />
+    <None Include="..\shaders\ShadowMappingDepth.vs" />
     <None Include="..\shaders\skybox_frag.shader" />
     <None Include="..\shaders\skybox_vert.shader" />
   </ItemGroup>

@@ -9,4 +9,7 @@ namespace cfg
 
 	unsigned int GetWindowWidth();
 	unsigned int GetWindowHeight();
+
+	unsigned int GetShadowWidth();
+	unsigned int GetShadowHeight();
 }

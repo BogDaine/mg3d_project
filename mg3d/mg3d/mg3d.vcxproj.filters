@@ -27,6 +27,9 @@
     <Filter Include="Header Files\OpenGL Boilerplate">
       <UniqueIdentifier>{2f3025c1-1352-4c64-84db-729b42aaf864}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders\Depth Shaders">
+      <UniqueIdentifier>{57a15faa-4e4c-4a0a-93b4-ffbb7b3f1444}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -119,6 +122,18 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="..\shaders\obj_default_vert.shader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\shaders\ShadowMappingDepth.vs">
+      <Filter>Shaders\Depth Shaders</Filter>
+    </None>
+    <None Include="..\shaders\ShadowMappingDepth.fs">
+      <Filter>Shaders\Depth Shaders</Filter>
+    </None>
+    <None Include="..\shaders\obj_default_shadows_vert.shader">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="..\shaders\obj_default_shadows_frag.shader">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

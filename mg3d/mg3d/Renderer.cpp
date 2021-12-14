@@ -20,7 +20,7 @@ void Renderer::DrawScene(Scene& scene, Camera* pCamera)
 	Clear();
 	glEnable(GL_DEPTH_TEST);
 
-	scene.Draw(pCamera, shaders::DefaultObj);
+	scene.Draw(pCamera, shaders::DefaultObj, FBO->GetID());
 
 	glDisable(GL_DEPTH_TEST);
 
