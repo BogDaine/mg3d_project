@@ -25,8 +25,9 @@ void Scene::SetTerrain(const std::string& imagePath)
 	m_Terrain = new Terrain(imagePath);
 }
 
-void Scene::SetTerrain(const Terrain*)
+void Scene::SetTerrain(Terrain *terrain)
 {
+	m_Terrain = terrain;
 }
 
 void Scene::PushEntity(Entity *entity)
@@ -68,7 +69,6 @@ void Scene::Update()
 
 void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 {
-	if(m_Skybox) m_Skybox->Draw(pCamera);
 
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function
@@ -87,7 +87,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	shaders::ShadowMapDepth->Bind();
 	if (m_Terrain)
 	{
-		shaders::ShadowMapDepth->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, -2, -50 }), { 100, 0.1, 100 }));
+		shaders::ShadowMapDepth->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, 3, -50 }), { 100, 0.1, 100 }));
 		m_Terrain->Draw();
 	}
 
@@ -115,7 +115,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 
 	if (m_Terrain)
 	{
-		shader->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, -2, -50 }), { 100, 0.1, 100 }));
+		shader->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, 3, -50 }), { 100, 0.1, 100 }));
 		m_Terrain->Draw();
 	}
 
@@ -124,6 +124,8 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 		entity->Draw(shader);
 	}
 
+	if(m_Skybox) m_Skybox->Draw(pCamera);
+	
 	//also draw lights that need to be drawn;
 		
 }

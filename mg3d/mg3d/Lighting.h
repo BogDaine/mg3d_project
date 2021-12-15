@@ -78,7 +78,7 @@ namespace materials_nsp {
 namespace lights
 {
 	const Light WHITE{ glm::vec3(1.0f, 1.0f, 1.0f),
-						glm::vec3(0.2f, 0.2f, 0.2f),
+						glm::vec3(0.7f, 0.7f, 0.7f),
 						glm::vec3(1.0f, 1.0f, 1.0f),
 						glm::vec3(1.0f, 1.0f, 1.0f) };
 

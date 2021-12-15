@@ -71,7 +71,11 @@ int main()
     }
 
     scene.InitShadowMap();
-    scene.SetTerrain("..\\Assets\\Heightmaps\\terrain_smaller.png");
+    Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_2.png");
+   //terrain.SetTexture1("..\\Assets\\Heightmaps\\terrain_smaller.png");
+    terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
+
+    scene.SetTerrain(&terrain);
 	WindowLoop(window, scene, pCamera, &input);
 
     return 0;

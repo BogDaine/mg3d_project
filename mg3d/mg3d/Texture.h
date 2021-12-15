@@ -42,4 +42,6 @@ public:
 	//inline std::string getPath(){ return path; }
 
 	inline void setType(std::string t) { type = t; }
+
+	static unsigned int CreateTexture(const std::string&);
 };

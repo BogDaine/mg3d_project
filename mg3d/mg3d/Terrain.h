@@ -6,6 +6,8 @@
 #include "VertexArray.h"
 #include "IndexArray.h"
 
+#include "Texture.h"
+
 class Shader;
 
 class Terrain
@@ -19,6 +21,9 @@ class Terrain
 	VertexBuffer m_VBO;
 	IndexArray m_IBO;
 
+	//Texture *m_Texture1 = nullptr;
+	
+	unsigned int m_Texture1 = 0;
 	//TO DO:
 	//blended textures for each height
 	//Terrain Shader
@@ -31,6 +36,7 @@ public:
 
 	void Draw();
 
+	void SetTexture1(const std::string&);
 
 	static std::vector<Vertex> LoadHeightmap(const std::string& LoadHeightmap, int& HMImgWidth, int& HMImgHeight);
 };

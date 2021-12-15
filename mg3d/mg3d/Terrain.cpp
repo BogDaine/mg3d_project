@@ -42,12 +42,21 @@ void Terrain::Draw()
 
 	//glBindVertexArray(hm_VAO);
 	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, hm_IBO);
+	//m_Texture1->bind(0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, m_Texture1);
 
 	m_VAO.bind();
 	m_IBO.bind();
 	glDrawElements(GL_TRIANGLES, m_Indices.size(), GL_UNSIGNED_INT, nullptr);
 	//glDrawArrays(GL_LINES, 0, Heightmap.size());
 
+}
+
+void Terrain::SetTexture1(const std::string& imagePath)
+{
+	//m_Texture1 = new Texture(imagePath);
+	m_Texture1 = Texture::CreateTexture(imagePath);
 }
 
 std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWidth, int& HMImgHeight)
@@ -158,7 +167,7 @@ std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWi
 				}
 
 				// Store final Normal of j-th vertex in i-th row
-				std::swap(finalVertexNormal.y, finalVertexNormal.z);
+				//std::swap(finalVertexNormal.y, finalVertexNormal.z);
 				//std::swap(finalVertexNormal.y, finalVertexNormal.x);
 				finalVertexNormal.x = -finalVertexNormal.x;
 				//finalVertexNormal.y = -finalVertexNormal.y;

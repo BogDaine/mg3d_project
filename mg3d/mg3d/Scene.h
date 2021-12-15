@@ -39,7 +39,7 @@ public:
 	void SetSkybox(std::vector<std::string>&);
 
 	void SetTerrain(const std::string&);
-	void SetTerrain(const Terrain*);
+	void SetTerrain(Terrain*);
 
 	void PushEntity(Entity*);
 	
