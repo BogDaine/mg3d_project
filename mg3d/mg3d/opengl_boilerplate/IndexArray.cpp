@@ -5,21 +5,21 @@ IndexArray::IndexArray()
 {
 	GLCall(glGenBuffers(1, &ID));
 }
-IndexArray::IndexArray(const void* data, const unsigned int& size)
+IndexArray::IndexArray(const void* data, const unsigned int& size, const unsigned int& drawingMode)
 {
 	GLCall(glGenBuffers(1, &ID));
 	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID));
-	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, drawingMode));
 	count = size / sizeof(unsigned int);
 	this->size = size;
 }
 
-void IndexArray::setData(const void* data, const unsigned int& size)
+void IndexArray::setData(const void* data, const unsigned int& size, const unsigned int& drawingMode)
 {
 	
 	bind();
 	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID));
-	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, GL_DYNAMIC_DRAW));
+	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, drawingMode));
 	count = size / sizeof(unsigned int);
 	this->size = size;
 }

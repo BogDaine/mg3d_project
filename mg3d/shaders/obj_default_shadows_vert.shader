@@ -9,6 +9,7 @@ out vec4 oColor;
 out vec2 TexCoords;
 out vec3 Normal;
 out vec3 FragPos;
+out vec4 FragPosLightSpace;
 
 uniform vec4 u_Pos;
 uniform mat4 model;
@@ -27,4 +28,5 @@ void main()
 	FragPos = vec3(model * position);
 	Normal = NormalMatrix * normalize(aNormal);
 	TexCoords = aTexCoords;
+	FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
 }

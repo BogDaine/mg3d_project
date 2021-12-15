@@ -167,6 +167,7 @@
     <ClCompile Include="Shaders.cpp" />
     <ClCompile Include="Skybox.cpp" />
     <ClCompile Include="Submarine.cpp" />
+    <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TheTime.cpp" />
   </ItemGroup>
@@ -190,6 +191,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="glfwstuff.h" />
+    <ClInclude Include="Terrain.h" />
     <ClInclude Include="TheTime.h" />
     <ClInclude Include="InputHandler.h" />
     <ClInclude Include="Lighting.h" />

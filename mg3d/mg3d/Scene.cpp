@@ -20,6 +20,15 @@ void Scene::SetSkybox(std::vector<std::string>& faces)
 	m_Skybox = new Skybox(faces);
 }
 
+void Scene::SetTerrain(const std::string& imagePath)
+{
+	m_Terrain = new Terrain(imagePath);
+}
+
+void Scene::SetTerrain(const Terrain*)
+{
+}
+
 void Scene::PushEntity(Entity *entity)
 {
 	m_Entities.push_back(entity);
@@ -75,6 +84,13 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 
 	glBindFramebuffer(GL_FRAMEBUFFER, m_DepthMapFBO);
 
+	shaders::ShadowMapDepth->Bind();
+	if (m_Terrain)
+	{
+		shaders::ShadowMapDepth->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, -2, -50 }), { 100, 0.1, 100 }));
+		m_Terrain->Draw();
+	}
+
 	for (const auto& entity : m_Entities)
 	{
 		entity->Draw(shaders::ShadowMapDepth);
@@ -88,12 +104,20 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	shader->SetMat4("model", glm::mat4(1));
 	shader->SetMat4("projection", pCamera->GetProjectionMatrix());
 	shader->SetMat4("view", pCamera->GetViewMatrix());
-
+	shader->SetInt("shadowMap", 11);
+	glActiveTexture(GL_TEXTURE11);
+	glBindTexture(GL_TEXTURE_2D, m_DepthMap);
 
 	shader->SetMat3("NormalMatrix", normal_mat);
 	shader->SetVec3("viewPos", pCamera->GetPosition());
 	shader->SetLight(m_PointLight1);
 	shader->SetFloat("material.shininess", 0.6 * 128);
+
+	if (m_Terrain)
+	{
+		shader->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, -2, -50 }), { 100, 0.1, 100 }));
+		m_Terrain->Draw();
+	}
 
 	for (const auto& entity : m_Entities)
 	{

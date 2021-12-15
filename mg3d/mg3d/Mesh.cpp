@@ -57,8 +57,8 @@ void Mesh::setupMesh()
 	layout.push<float>(3); // NORMALS
 	layout.push<float>(2); // TEXTURE COORDINATES
 
-	VBO.setData(&vertices[0], vertices.size() * sizeof(Vertex));
-	IBO.setData(&indices[0], indices.size() * sizeof(unsigned int));
+	VBO.setData(vertices.data(), vertices.size() * sizeof(Vertex));
+	IBO.setData(indices.data(), indices.size() * sizeof(unsigned int));
 	//IBO = IndexArray(&indices[0], indices.size() * sizeof(unsigned int));
 	//IBO.bind();
 

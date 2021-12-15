@@ -6,6 +6,8 @@
 #include "Lighting.h"
 //#include "Shader.h"
 
+#include "Terrain.h"
+
 class Shader;
 
 class Skybox;
@@ -14,7 +16,9 @@ class Entity;
 class Scene
 {
 protected:
-	Skybox* m_Skybox;
+	Skybox* m_Skybox = nullptr;
+	Terrain* m_Terrain = nullptr;
+
 
 	std::vector<Entity*> m_Entities;
 
@@ -33,6 +37,9 @@ public:
 	void SetSkybox(const GLuint&);
 	
 	void SetSkybox(std::vector<std::string>&);
+
+	void SetTerrain(const std::string&);
+	void SetTerrain(const Terrain*);
 
 	void PushEntity(Entity*);
 	
