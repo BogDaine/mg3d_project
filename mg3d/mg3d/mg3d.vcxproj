@@ -180,8 +180,10 @@
     <None Include="..\shaders\postprocess\default_vert.shader" />
     <None Include="..\shaders\postprocess\kernel_frag.shader" />
     <None Include="..\shaders\postprocess\no_effects_frag.shader" />
-    <None Include="..\shaders\ShadowMappingDepth.fs" />
-    <None Include="..\shaders\ShadowMappingDepth.vs" />
+    <None Include="..\shaders\ShadowMapping.fs" />
+    <None Include="..\shaders\ShadowMapping.vs" />
+    <None Include="..\shaders\shadow_map_depth_frag.shader" />
+    <None Include="..\shaders\shadow_map_depth_vert.shader" />
     <None Include="..\shaders\skybox_frag.shader" />
     <None Include="..\shaders\skybox_vert.shader" />
   </ItemGroup>

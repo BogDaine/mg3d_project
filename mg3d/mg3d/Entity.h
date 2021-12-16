@@ -18,7 +18,7 @@ public:
 	Entity(const glm::vec3&);
 
 	void Rotate(const float&, const float&, const float&);
-	void rotate(const glm::vec3&);
+	void Rotate(const glm::vec3&);
 
 	void Translate(const float&, const float&, const float&);
 	void Translate(const glm::vec3&);

@@ -33,7 +33,7 @@ int main()
 	Scene scene;
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
-    Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 1.0f, 7.0f));
+    Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 40.0f, 7.0f));
 
     InputHandler input(window, pCamera);
 
@@ -54,9 +54,12 @@ int main()
 
 
     scene.SetSkybox(faces);
-    Submarine DummySubmarine({ 0, 0, 0 });
-    //scene.PushEntity(&DummySubmarine);
-    constexpr float pi = glm::pi<float>();
+    Submarine DummySubmarine({ 0, 35, 0 });
+    Submarine DummySubmarine1({ 0, 45, 0 });
+    DummySubmarine1.Rotate(0, 0, glm::radians(90.0f));
+    scene.PushEntity(&DummySubmarine);
+    scene.PushEntity(&DummySubmarine1);
+    /*constexpr float pi = glm::pi<float>();
     float N = 10, M = 10;
     float r = 200;
 
@@ -68,12 +71,13 @@ int main()
                                             sin(pi * m/M) * sin(2 * pi * n/N),
                                             cos(pi * m/M) ) * r));
         }
-    }
+    }*/
 
     scene.InitShadowMap();
     Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_2.png");
-   //terrain.SetTexture1("..\\Assets\\Heightmaps\\terrain_smaller.png");
-    terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
+    //Terrain terrain("..\\Assets\\Misc_textures\\white.png");
+    //terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
+    terrain.SetTexture1("..\\Assets\\Misc_textures\\Grass.jpg");
 
     scene.SetTerrain(&terrain);
 	WindowLoop(window, scene, pCamera, &input);

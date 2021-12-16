@@ -45,11 +45,11 @@ void Mesh::Draw(Shader *shader)
 	VAO.unbind();
 	shader->Unbind();
 	IBO.unbind();
+	for (unsigned int i = 0; i < textures.size(); i++)
+	{
+		textures[i]->unbind();
+	}
 }
-/*for (unsigned int i = 0; i < textures.size(); i++)
-{
-	textures[i]->unbind();
-}*/
 
 void Mesh::setupMesh()
 {

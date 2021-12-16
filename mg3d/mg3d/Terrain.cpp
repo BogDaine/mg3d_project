@@ -167,7 +167,7 @@ std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWi
 				}
 
 				// Store final Normal of j-th vertex in i-th row
-				//std::swap(finalVertexNormal.y, finalVertexNormal.z);
+				std::swap(finalVertexNormal.y, finalVertexNormal.z);
 				//std::swap(finalVertexNormal.y, finalVertexNormal.x);
 				finalVertexNormal.x = -finalVertexNormal.x;
 				//finalVertexNormal.y = -finalVertexNormal.y;

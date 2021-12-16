@@ -64,6 +64,10 @@ float ShadowCalculation(vec4 fragPosLightSpace)
 	// transform to [0,1] range
 	projCoords = projCoords * 0.5 + 0.5;
 	float closestDepth = texture(shadowMap, projCoords.xy).r;
+
+	if (closestDepth == 0.0f)
+		discard;
+
 	float currentDepth = projCoords.z;
 	vec3 normal = normalize(Normal);
 	vec3 lightDir = normalize(light.position - FragPos);
@@ -94,7 +98,7 @@ void main()
 {
 	vec3 ambient = light.ambient * (//vec3(texture(material.diffuse, TexCoords)) +
 		vec3(texture(material.texture_diffuse0, TexCoords)) +
-		//vec3(texture(material.texture_diffuse1, TexCoords)) +
+		vec3(texture(material.texture_diffuse1, TexCoords)) +
 		//vec3(texture(material.texture_diffuse2, TexCoords)) +
 		material.ambientColor +
 		material.diffuseColor);
@@ -111,7 +115,7 @@ void main()
 	specular = light.specular * spec * vec3(texture(material.texture_specular0, TexCoords));
 
 	float shadow = ShadowCalculation(FragPosLightSpace);
-
+	//shadow = 1.0f;
 	vec3 emmission = vec3(texture(material.emmission, TexCoords));
 	Fragcolor = vec4((ambient + (1.0 - shadow) * (diffuse + specular) /*+ emmission*/), 1.0f);
 	//Fragcolor = texture(material.diffuse, TexCoords);

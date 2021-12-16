@@ -10,7 +10,7 @@ void Entity::Rotate(const float& x, const float& y, const float& z)
 	m_Rot += glm::vec3(x, y, z);
 }
 
-void Entity::rotate(const glm::vec3& val)
+void Entity::Rotate(const glm::vec3& val)
 {
 	m_Rot += val;
 }

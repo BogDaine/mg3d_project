@@ -18,7 +18,7 @@ void IndexArray::setData(const void* data, const unsigned int& size, const unsig
 {
 	
 	bind();
-	GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID));
+	//GLCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ID));
 	GLCall(glBufferData(GL_ELEMENT_ARRAY_BUFFER, size, data, drawingMode));
 	count = size / sizeof(unsigned int);
 	this->size = size;
