@@ -75,9 +75,10 @@ int main()
 
     scene.InitShadowMap();
     Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_2.png");
-    //Terrain terrain("..\\Assets\\Misc_textures\\white.png");
-    //terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
-    terrain.SetTexture1("..\\Assets\\Misc_textures\\Grass.jpg");
+    //Terrain terrain("..\\Assets\\Misc_textures\\black.png");
+    //Terrain terrain("..\\Assets\\Misc_textures\\Grass.jpg");
+    terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
+    //terrain.SetTexture1("..\\Assets\\Misc_textures\\Grass.jpg");
 
     scene.SetTerrain(&terrain);
 	WindowLoop(window, scene, pCamera, &input);

@@ -167,12 +167,17 @@ std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWi
 				}
 
 				// Store final Normal of j-th vertex in i-th row
-				std::swap(finalVertexNormal.y, finalVertexNormal.z);
+				//std::swap(finalVertexNormal.y, finalVertexNormal.z);
 				//std::swap(finalVertexNormal.y, finalVertexNormal.x);
-				finalVertexNormal.x = -finalVertexNormal.x;
+				//finalVertexNormal.x = -finalVertexNormal.x;
 				//finalVertexNormal.y = -finalVertexNormal.y;
 				//finalVertexNormal.z = -finalVertexNormal.z;
-				heightmap[i * HMImgHeight + j].Normal = glm::normalize(finalVertexNormal);
+				heightmap[i * HMImgHeight + j].Normal = -glm::normalize(finalVertexNormal);
+
+				/*std::cout << heightmap[i * HMImgHeight + j].Normal.x << " " <<
+					heightmap[i * HMImgHeight + j].Normal.y << " " <<
+					heightmap[i * HMImgHeight + j].Normal.z << std::endl;*/
+				//heightmap[i * HMImgHeight + j].Normal = glm::vec3(0, 1, 0);
 
 			}
 		}
