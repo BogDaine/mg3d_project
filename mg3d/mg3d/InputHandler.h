@@ -1,6 +1,8 @@
 #pragma once
+#include <glew.h>
 #include <glfw3.h>
-
+#include "Submarine.h"
+class Submarine;
 class Camera;
 
 static enum eInputMode
@@ -13,8 +15,9 @@ class InputHandler
 {
 protected:
 
-	GLFWwindow* m_BoundWindow;
-	Camera* m_BoundCamera;
+	GLFWwindow* m_BoundWindow = nullptr;
+	Camera* m_BoundCamera = nullptr;
+	Submarine* m_BoundSubmarine = nullptr;
 	
 	int m_InputMode = eInputMode::CAMERA_FIRST_PERSON;
 
@@ -23,6 +26,8 @@ protected:
 public:
 
 	InputHandler(GLFWwindow*, Camera*);
+
+	void BindSubmarine(Submarine*);
 
 	void HandleTheInput();
 

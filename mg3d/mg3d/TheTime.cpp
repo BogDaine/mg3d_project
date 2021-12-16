@@ -9,6 +9,11 @@ double TheTime::DetlaTime()
 	return dt;
 }
 
+double TheTime::LastTime()
+{
+	return lastTime;
+}
+
 void TheTime::UpdateDeltaTime()
 {
 	double currentTime = glfwGetTime();

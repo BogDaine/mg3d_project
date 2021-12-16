@@ -1,6 +1,7 @@
 #pragma once
 #include "Maths.h"
 #include "Model.h"
+#include "TheTime.h"
 
 class Camera;
 
@@ -10,6 +11,10 @@ protected:
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
 	glm::vec3 m_Scale = {1, 1, 1};
+
+
+
+	glm::vec3 m_Velocity;
 	float m_ScaleFloat = 1;
 
 public:
@@ -30,10 +35,15 @@ public:
 	void Translate(const float&, const float&, const float&);
 	void Translate(const glm::vec3&);
 
+	void AddForce(const float&, const float&, const float&);
+	void AddForce(const glm::vec3&);
+
+
+	void ExertVelocity();
 
 	virtual void Draw(Shader*) {}
 	
-	virtual void Update() {}
+	virtual void Update();
 };
 
 class VisibleEntity : public Entity

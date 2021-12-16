@@ -71,7 +71,8 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 {
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function
-	m_PointLight1.position = glm::vec3(1.0f, 70.0f, 1.0f);
+	m_PointLight1.position = glm::vec3(1.0f, 45.0f, 1.0f);
+	m_PointLight1.ambient = {0.3, 0.3, 0.4};
 	//m_PointLight1.position = pCamera->GetPosition();
 	glm::mat4 lightProjection, lightView;
 	glm::mat4 lightSpaceMatrix;
@@ -92,7 +93,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 
 	if (m_Terrain)
 	{
-		shaders::ShadowMapDepth->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, 3, -50 }), { 100, 0.1, 100 }));
+		shaders::ShadowMapDepth->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, -3, -50 }), { 100, 0.1, 100 }));
 		m_Terrain->Draw();
 	}
 
@@ -128,7 +129,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	}
 	if (m_Terrain)
 	{
-		shader->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, 3, -50 }), { 100, 0.1, 100 }));
+		shader->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, -3, -50 }), { 100, 0.1, 100 }));
 		m_Terrain->Draw();
 	}
 	

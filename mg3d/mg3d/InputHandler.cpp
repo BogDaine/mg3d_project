@@ -17,6 +17,11 @@ InputHandler::InputHandler(GLFWwindow* window, Camera* camera):
 	
 }
 
+void InputHandler::BindSubmarine(Submarine *sub)
+{
+	m_BoundSubmarine = sub;
+}
+
 void InputHandler::HandleTheInput()
 {
 	switch (m_InputMode)
@@ -35,6 +40,20 @@ void InputHandler::HandleTheInput()
 		if (key_pressed[GLFW_KEY_D])
 			m_BoundCamera->ProcessKeyboard(ECameraMovementType::RIGHT, TheTime::DetlaTime());
 
+		if (key_pressed[GLFW_KEY_UP])
+			m_BoundSubmarine->HandleInput(eSubmarineControl::FORWARD);
+
+		if (key_pressed[GLFW_KEY_DOWN])
+			m_BoundSubmarine->HandleInput(eSubmarineControl::BACKWARD);
+
+		if (key_pressed[GLFW_KEY_LEFT])
+			m_BoundSubmarine->HandleInput(eSubmarineControl::LEFT);
+
+		if (key_pressed[GLFW_KEY_RIGHT])
+			m_BoundSubmarine->HandleInput(eSubmarineControl::RIGHT);
+
+		if (key_pressed[GLFW_KEY_SPACE])
+			m_BoundSubmarine->HandleInput(eSubmarineControl::UP);
 
 		break;
 

@@ -38,9 +38,29 @@ void Entity::Translate(const float& x, const float& y, const float& z)
 	m_Pos += glm::vec3(x, y, z);
 }
 
+void Entity::AddForce(const glm::vec3& val)
+{
+	m_Velocity += val;
+}
+
+void Entity::AddForce(const float& x, const float& y, const float& z)
+{
+	m_Velocity += glm::vec3(x, y, z);
+}
+
 void Entity::Translate(const glm::vec3& val)
 {
 	m_Pos += val;
+}
+
+void Entity::ExertVelocity()
+{
+	Translate(m_Velocity * (float) TheTime::DetlaTime());
+}
+
+void Entity::Update()
+{
+	
 }
 
 VisibleEntity::VisibleEntity(const glm::vec3& pos):
@@ -61,6 +81,8 @@ VisibleEntity::VisibleEntity(Model* model, const glm::vec3& pos) :
 
 void VisibleEntity::Update()
 {
+	this->Entity::Update();
+
 	m_ModelMatrix = glm::translate(glm::mat4(1), m_Pos);
 	m_ModelMatrix = glm::rotate(m_ModelMatrix, m_Rot.x, { 1.0, 0.0, 0.0 });
 	m_ModelMatrix = glm::rotate(m_ModelMatrix, m_Rot.y, { 0.0, 1.0, 0.0 });
