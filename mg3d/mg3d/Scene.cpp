@@ -71,7 +71,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 {
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function
-	m_PointLight1.position = glm::vec3(-60.0f, 60.0f, -1.0f);
+	m_PointLight1.position = glm::vec3(1.0f, 70.0f, 1.0f);
 	//m_PointLight1.position = pCamera->GetPosition();
 	glm::mat4 lightProjection, lightView;
 	glm::mat4 lightSpaceMatrix;

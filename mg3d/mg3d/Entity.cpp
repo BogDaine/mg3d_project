@@ -5,6 +5,24 @@ Entity::Entity(const glm::vec3& pos) :
 {
 }
 
+void Entity::SetScale(const float&, const float&, const float&)
+{
+}
+
+void Entity::SetScale(const glm::vec3&)
+{
+}
+
+void Entity::Scale(const float& x, const float& y, const float& z)
+{
+	m_Scale *= glm::vec3(x, y, z);
+}
+
+void Entity::Scale(const glm::vec3& val)
+{
+	m_Scale *= val;
+}
+
 void Entity::Rotate(const float& x, const float& y, const float& z)
 {
 	m_Rot += glm::vec3(x, y, z);
@@ -47,6 +65,7 @@ void VisibleEntity::Update()
 	m_ModelMatrix = glm::rotate(m_ModelMatrix, m_Rot.x, { 1.0, 0.0, 0.0 });
 	m_ModelMatrix = glm::rotate(m_ModelMatrix, m_Rot.y, { 0.0, 1.0, 0.0 });
 	m_ModelMatrix = glm::rotate(m_ModelMatrix, m_Rot.z, { 0.0, 0.0, 1.0 });
+	m_ModelMatrix = glm::scale(m_ModelMatrix, m_Scale);
 	m_NormalMatrix= glm::transpose(glm::inverse(m_ModelMatrix));
 }
 

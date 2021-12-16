@@ -9,13 +9,20 @@ class Entity
 protected:
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
-	glm::vec3 m_Scale;
+	glm::vec3 m_Scale = {1, 1, 1};
 	float m_ScaleFloat = 1;
 
 public:
 
 	Entity() = default;
 	Entity(const glm::vec3&);
+
+	void SetScale(const float&, const float&, const float&);
+	void SetScale(const glm::vec3&);
+
+	void Scale(const float&, const float&, const float&);
+	void Scale(const glm::vec3&);
+
 
 	void Rotate(const float&, const float&, const float&);
 	void Rotate(const glm::vec3&);

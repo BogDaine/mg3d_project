@@ -6,8 +6,8 @@ namespace cfg
 	unsigned int WindowWidth = WINDOW_WIDTH;
 	unsigned int WindowHeight = WINDOW_HEIGHT;
 
-	unsigned int ShadowWidth = 1024;
-	unsigned int ShadowHeight = 1024;
+	unsigned int ShadowWidth = 2048;
+	unsigned int ShadowHeight = 2048;
 
 
 	unsigned int GetWindowWidth()

@@ -33,7 +33,7 @@ int main()
 	Scene scene;
 	int width, height;
 	glfwGetWindowSize(window, &width, &height);
-    Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 40.0f, 7.0f));
+    Camera* pCamera = new Camera(width, height, glm::vec3(0.0f, 9.5f, 7.0f));
 
     InputHandler input(window, pCamera);
 
@@ -54,11 +54,13 @@ int main()
 
 
     scene.SetSkybox(faces);
-    Submarine DummySubmarine({ 0, 35, 0 });
-    Submarine DummySubmarine1({ 0, 45, 0 });
+    Submarine DummySubmarine({ 0, 10, 0 });
+    Submarine DummySubmarine1({ 13, 45, 0 });
     DummySubmarine1.Rotate(0, 0, glm::radians(90.0f));
     scene.PushEntity(&DummySubmarine);
     scene.PushEntity(&DummySubmarine1);
+
+    DummySubmarine.Scale(0.05, 0.05, 0.05);
     /*constexpr float pi = glm::pi<float>();
     float N = 10, M = 10;
     float r = 200;
