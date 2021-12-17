@@ -78,7 +78,9 @@ void PostProcess::NoEffects(const unsigned int& texture)
 
 
 
-	GLCall(glBindTextureUnit(0, texture));
+	//GLCall(glBindTextureUnit(0, texture));
+	//..Se pare ca e doar de la OpenGL 4.5 incolo
+
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
