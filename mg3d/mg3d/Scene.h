@@ -19,6 +19,8 @@ protected:
 	Skybox* m_Skybox = nullptr;
 	Terrain* m_Terrain = nullptr;
 
+	glm::vec3 m_TerrainTranslation = { -50.0f, -3.0f, -50.0f };
+	glm::vec3 m_TerrainScale = { 100, 0.1, 100 };
 
 	std::vector<Entity*> m_Entities;
 

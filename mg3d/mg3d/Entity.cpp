@@ -68,6 +68,16 @@ glm::vec3 Entity::Forward() const
 	return m_Forward;
 }
 
+glm::vec3 Entity::Up() const
+{
+	return m_Up;
+}
+
+glm::vec3 Entity::Right() const
+{
+	return m_Right;
+}
+
 void Entity::Update()
 {
 	// Calculate the new forward vector

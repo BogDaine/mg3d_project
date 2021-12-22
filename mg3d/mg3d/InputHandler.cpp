@@ -81,6 +81,9 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 			case GLFW_KEY_ESCAPE:
 				SetInputMode(eInputMode::MENU);
 				break;
+			case GLFW_KEY_C:
+				m_BoundCamera->CycleModes();
+				break;
 			}
 			
 			break;

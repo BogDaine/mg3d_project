@@ -69,6 +69,13 @@ void Submarine::Update()
 
 	
 	//std::cout << "speed: " << glm::length(m_Velocity) << std::endl;
+	float speed = glm::length(m_Velocity);
+	if (speed != 0)
+	{
+		auto newVel = glm::normalize(glm::normalize(m_Velocity) + m_Forward) * speed;
+		m_Velocity = newVel;
+	}
+
 	ApplyDrag();
 	ExertVelocity();
 	this->VisibleEntity::Update();

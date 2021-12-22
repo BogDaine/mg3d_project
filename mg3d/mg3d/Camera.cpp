@@ -13,6 +13,13 @@ void Camera::BindEntity(Entity* entity)
     m_BoundEntity = entity;
 }
 
+void Camera::CycleModes()
+{
+    m_Mode = static_cast<ECameraMode>(static_cast<int>(m_Mode) + 1);
+    if (m_Mode == ECameraMode::MAX)
+        m_Mode = static_cast<ECameraMode>(static_cast<int>(0));
+}
+
 void Camera::SetMode(const ECameraMode &mode)
 {
     m_Mode = mode;
@@ -55,6 +62,8 @@ void Camera::Update()
 const glm::mat4 Camera::GetViewMatrix() const
 {
     // Returns the View Matrix
+    if(m_Mode == ECameraMode::STATIONARY_BOUND)
+        return glm::lookAt(position, position + glm::normalize(m_BoundEntity->Position() - position), up);
     return glm::lookAt(position, position + forward, up);
 }
 
@@ -81,25 +90,59 @@ const glm::mat4 Camera::GetProjectionMatrix() const
 
 void Camera::ProcessKeyboard(ECameraMovementType direction, float deltaTime)
 {
-    float velocity = (float)(cameraSpeedFactor * deltaTime);
-    switch (direction) {
-    case ECameraMovementType::FORWARD:
-        position += forward * velocity;
+    float increment;
+    switch (m_Mode)
+    {
+    case ECameraMode::FIRST_PERSON:
+
+        increment = (float)(cameraSpeedFactor * deltaTime);
+        switch (direction) {
+        case ECameraMovementType::FORWARD:
+            position += forward * increment;
+            break;
+        case ECameraMovementType::BACKWARD:
+            position -= forward * increment;
+            break;
+        case ECameraMovementType::LEFT:
+            position -= right * increment;
+            break;
+        case ECameraMovementType::RIGHT:
+            position += right * increment;
+            break;
+        case ECameraMovementType::UP:
+            position += up * increment;
+            break;
+        case ECameraMovementType::DOWN:
+            position -= up * increment;
+            break;
+        }
         break;
-    case ECameraMovementType::BACKWARD:
-        position -= forward * velocity;
-        break;
-    case ECameraMovementType::LEFT:
-        position -= right * velocity;
-        break;
-    case ECameraMovementType::RIGHT:
-        position += right * velocity;
-        break;
-    case ECameraMovementType::UP:
-        position += up * velocity;
-        break;
-    case ECameraMovementType::DOWN:
-        position -= up * velocity;
+
+    case ECameraMode::THIRD_PERSON:
+
+        increment = (float)(m_ThirdPersonSpeed * deltaTime);
+
+        switch (direction) {
+        case ECameraMovementType::FORWARD:
+            m_BoundOffset.y += increment;
+            break;
+        case ECameraMovementType::BACKWARD:
+            m_BoundOffset.y -= increment;
+            break;
+        case ECameraMovementType::LEFT:
+            m_BoundOffset.x -= increment;
+            break;
+        case ECameraMovementType::RIGHT:
+            m_BoundOffset.x += increment;
+            break;
+        case ECameraMovementType::UP:
+            m_BoundOffset.z += increment;
+            break;
+        case ECameraMovementType::DOWN:
+            m_BoundOffset.z -= increment;
+            break;
+        }
+
         break;
     }
 }
@@ -164,20 +207,37 @@ void Camera::ProcessMouseMovement(float xOffset, float yOffset, bool constrainPi
 
 void Camera::UpdateCameraVectors()
 {
+    glm::vec3 newForward;
+
+    this->forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+    this->forward.y = sin(glm::radians(pitch));
+    this->forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+    this->forward = glm::normalize(this->forward);
+
     // Calculate the new forward vector
     switch (m_Mode)
     {
+    case ECameraMode::STATIONARY_BOUND:
     case ECameraMode::FIRST_PERSON:
-        this->forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-        this->forward.y = sin(glm::radians(pitch));
-        this->forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-        this->forward = glm::normalize(this->forward);
+        
         break;
+
+    //case ECameraMode::STATIONARY_BOUND:
+       /* newForward = m_BoundEntity->Position() - position;
+       if (glm::length(newForward) == 0)
+            break;
+        this->forward = glm::normalize(newForward);*/
+        //break;
+
     case ECameraMode::THIRD_PERSON:
-        position = m_BoundEntity->Position() - m_BoundEntity->Forward() * m_BoundOffset + glm::vec3(0.0f,1.0f,0.0f);
-        const auto newForward = m_BoundEntity->Position() - position;
+        position = m_BoundEntity->Position() + m_BoundEntity->Forward() * m_BoundOffset.z +
+            m_BoundEntity->Up() * m_BoundOffset.y +
+            m_BoundEntity->Right() * m_BoundOffset.x;
+        newForward = m_BoundEntity->Position() - position;
+
         if (glm::length(newForward) == 0)
             break;
+
         this->forward = glm::normalize(newForward);
         break;
     }

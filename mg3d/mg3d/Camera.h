@@ -17,7 +17,8 @@ enum class ECameraMode
 {
     FIRST_PERSON,
     THIRD_PERSON,
-    STATIONARY_BOUND
+    STATIONARY_BOUND,
+    MAX
 };
 
 class Camera
@@ -29,17 +30,20 @@ private:
     const float YAW = -90.0f;
     const float PITCH = 0.0f;
     const float FOV = 45.0f;
+
     glm::vec3 startPosition;
 
     ECameraMode m_Mode = ECameraMode::FIRST_PERSON;
 
     Entity* m_BoundEntity;
-    glm::vec3 m_BoundOffset = glm::vec3(4.0f, 0.0f, 0.0f);
+    glm::vec3 m_BoundOffset = glm::vec3(0.0f, 2.5f, -6);
 
 public:
     Camera(const int width, const int height, const glm::vec3& position);
 
     void BindEntity(Entity*);
+
+    void CycleModes();
 
     void SetMode(const ECameraMode&);
 
@@ -70,8 +74,9 @@ private:
    
 
 protected:
-    const float cameraSpeedFactor = 20.0f;
-    const float mouseSensitivity = 0.1f;
+    float cameraSpeedFactor = 20.0f;
+    float m_ThirdPersonSpeed = 5.0f;
+    float mouseSensitivity = 0.1f;
 
     // Perspective properties
     float zNear;

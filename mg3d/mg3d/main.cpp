@@ -248,7 +248,8 @@ int main()
 
     scene.SetTerrain(&terrain);
 
-    pCamera->SetMode(ECameraMode::THIRD_PERSON);
+    //pCamera->SetMode(ECameraMode::THIRD_PERSON);
+    pCamera->SetMode(ECameraMode::FIRST_PERSON);
     pCamera->BindEntity(&DummySubmarine);
 	WindowLoop(window, scene, pCamera, &input);
 

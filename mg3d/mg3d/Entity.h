@@ -51,6 +51,8 @@ public:
 	void ExertVelocity();
 
 	glm::vec3 Forward() const;
+	glm::vec3 Up() const;
+	glm::vec3 Right() const;
 
 	virtual void Draw(Shader*) {}
 	
