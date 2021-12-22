@@ -123,7 +123,8 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	shader->SetVec3("lightPos", m_PointLight1.position);
 	shader->SetFloat("material.shininess", 0.6 * 128);
 
-	
+	//glEnable(GL_CULL_FACE);
+	//glCullFace(GL_FRONT);
 
 	for (const auto& entity : m_Entities)
 	{
