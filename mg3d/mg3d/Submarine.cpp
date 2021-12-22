@@ -8,10 +8,27 @@ Submarine::Submarine(const glm::vec3& pos):
 	//Rotate(glm::radians(-90.0f), 0, glm::radians(90.0f));
 	//because otherwise it's not a submarine
 }
+void Submarine::ApplyDrag()
+{
+	float V = glm::length(m_Velocity);		// speed
+	if (V == 0)
+		return;
+
+	float r = 997.0f;						//Medium density
+	float Cd = 1.0f;						//Drag coefficient
+	float A = 0.0007f + (1-glm::abs(cos(glm::angle(glm::normalize(m_Forward), glm::normalize(m_Velocity))))) * 0.001;						//Area of contact
+	float Drag = (Cd * A * r * V * V) / 2;
+
+	//std::cout << "speed: " << V << std::endl;
+	//std::cout << "Drag: " << Drag << std::endl;
+
+	m_Velocity += -Drag * (float) TheTime::DetlaTime() * glm::normalize(m_Velocity) ;
+}
 //
 void Submarine::HandleInput(const eSubmarineControl& command)
 {
 	glm::vec3 rotation = {0,0,0};
+	float ForwardSpeed = (cos(glm::angle(glm::normalize(m_Forward), glm::normalize(m_Velocity)))) * glm::length(m_Velocity) * 0.25f;
 	switch (command)
 	{
 
@@ -22,18 +39,20 @@ void Submarine::HandleInput(const eSubmarineControl& command)
 		AddForce( - m_Forward * (float)TheTime::DetlaTime());
 		break;
 	case eSubmarineControl::LEFT:
-		m_Yaw += 30 * TheTime::DetlaTime();
-		rotation.y += glm::radians(30 * TheTime::DetlaTime());
+		m_Yaw += 30 * TheTime::DetlaTime() * ForwardSpeed;
+		rotation.y += glm::radians(30 * TheTime::DetlaTime()) * ForwardSpeed;
 		break;
 	case eSubmarineControl::RIGHT:
-		m_Yaw -= 30 * TheTime::DetlaTime();
-		rotation.y -= glm::radians(30 * TheTime::DetlaTime());
+		m_Yaw -= 30 * TheTime::DetlaTime() * ForwardSpeed;
+		rotation.y -= glm::radians(30 * TheTime::DetlaTime()) * ForwardSpeed;
 		break;
 	case eSubmarineControl::UP:
-		m_Pitch += 30 * TheTime::DetlaTime();
-		rotation.z += glm::radians(30 * TheTime::DetlaTime());
+		m_Pitch += 30 * TheTime::DetlaTime() * ForwardSpeed;
+		rotation.z += glm::radians(30 * TheTime::DetlaTime()) * ForwardSpeed;
 		break;
 	case eSubmarineControl::DOWN:
+		m_Pitch -= 30 * TheTime::DetlaTime() * ForwardSpeed;
+		rotation.z -= glm::radians(30 * TheTime::DetlaTime()) * ForwardSpeed;
 		break;
 
 	}
@@ -47,17 +66,10 @@ void Submarine::Draw(Shader* pCamera)
 
 void Submarine::Update()
 {
-	// Calculate the new forward vector
-	this->m_Forward.x = cos(glm::radians(-m_Yaw)) * cos(glm::radians(m_Pitch));
-	this->m_Forward.y = sin(glm::radians(m_Pitch));
-	this->m_Forward.z = sin(glm::radians(-m_Yaw)) * cos(glm::radians(m_Pitch));
-	this->m_Forward = glm::normalize(this->m_Forward);
-	// Also re-calculate the Right and Up vector
-	m_Right = glm::normalize(glm::cross(m_Forward, { 0, 1, 0 }));//worldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
-	m_Up = glm::normalize(glm::cross(m_Right, m_Forward));
 
 	
-	
+	//std::cout << "speed: " << glm::length(m_Velocity) << std::endl;
+	ApplyDrag();
 	ExertVelocity();
 	this->VisibleEntity::Update();
 	//Rotate(m_Pitch, 0, m_Yaw);

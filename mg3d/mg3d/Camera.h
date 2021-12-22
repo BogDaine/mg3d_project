@@ -1,6 +1,7 @@
 #pragma once
 #include "Maths.h"
 
+class Entity;
 
 enum ECameraMovementType
 {
@@ -11,6 +12,12 @@ enum ECameraMovementType
     RIGHT,
     UP,
     DOWN
+};
+enum class ECameraMode
+{
+    FIRST_PERSON,
+    THIRD_PERSON,
+    STATIONARY_BOUND
 };
 
 class Camera
@@ -24,8 +31,17 @@ private:
     const float FOV = 45.0f;
     glm::vec3 startPosition;
 
+    ECameraMode m_Mode = ECameraMode::FIRST_PERSON;
+
+    Entity* m_BoundEntity;
+    glm::vec3 m_BoundOffset = glm::vec3(4.0f, 0.0f, 0.0f);
+
 public:
     Camera(const int width, const int height, const glm::vec3& position);
+
+    void BindEntity(Entity*);
+
+    void SetMode(const ECameraMode&);
 
     void Set(const int width, const int height, const glm::vec3& position);
 

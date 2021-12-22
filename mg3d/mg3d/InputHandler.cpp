@@ -54,6 +54,8 @@ void InputHandler::HandleTheInput()
 
 		if (key_pressed[GLFW_KEY_SPACE])
 			m_BoundSubmarine->HandleInput(eSubmarineControl::UP);
+		if (key_pressed[GLFW_KEY_LEFT_SHIFT])
+			m_BoundSubmarine->HandleInput(eSubmarineControl::DOWN);
 
 		break;
 

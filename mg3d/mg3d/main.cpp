@@ -218,7 +218,7 @@ int main()
     Submarine DummySubmarine1({ 13, 45, 0 });
     DummySubmarine1.Rotate(0, 0, glm::radians(90.0f));
     scene.PushEntity(&DummySubmarine);
-    scene.PushEntity(&DummySubmarine1);
+    //scene.PushEntity(&DummySubmarine1);
 
     DummySubmarine.Scale(0.05, 0.05, 0.05);
     input.BindSubmarine(&DummySubmarine);
@@ -242,10 +242,14 @@ int main()
     Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_2.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\black.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\Grass.jpg");
-    terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
+   // terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
+    terrain.SetTexture1("..\\Assets\\Misc_textures\\ocean_floor.jpg");
     //terrain.SetTexture1("..\\Assets\\Misc_textures\\Grass.jpg");
 
     scene.SetTerrain(&terrain);
+
+    pCamera->SetMode(ECameraMode::THIRD_PERSON);
+    pCamera->BindEntity(&DummySubmarine);
 	WindowLoop(window, scene, pCamera, &input);
 
     return 0;

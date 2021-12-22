@@ -16,18 +16,14 @@ enum class eSubmarineControl
 class Submarine :public VisibleEntity
 {
 protected:
-	glm::vec3 m_Forward;
-	glm::vec3 m_Right;
-	glm::vec3 m_Up;
-
-	float m_Pitch = 0;
-	float m_Yaw = 0;
-	float m_Roll = 0;
+	
 
 
 public:
 
 	Submarine(const glm::vec3&);
+
+	void ApplyDrag();
 
 	void HandleInput(const eSubmarineControl&);
 

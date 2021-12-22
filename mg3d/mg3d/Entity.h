@@ -12,6 +12,13 @@ protected:
 	glm::vec3 m_Rot;
 	glm::vec3 m_Scale = {1, 1, 1};
 
+	glm::vec3 m_Forward;
+	glm::vec3 m_Right;
+	glm::vec3 m_Up;
+
+	float m_Pitch = 0;
+	float m_Yaw = 0;
+	float m_Roll = 0;
 
 
 	glm::vec3 m_Velocity;
@@ -21,6 +28,8 @@ public:
 
 	Entity() = default;
 	Entity(const glm::vec3&);
+
+	glm::vec3 Position() const;
 
 	void SetScale(const float&, const float&, const float&);
 	void SetScale(const glm::vec3&);
@@ -40,6 +49,8 @@ public:
 
 
 	void ExertVelocity();
+
+	glm::vec3 Forward() const;
 
 	virtual void Draw(Shader*) {}
 	

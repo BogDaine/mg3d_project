@@ -1,10 +1,21 @@
 #include "Camera.h"
+#include "Entity.h"
 
 Camera::Camera(const int width, const int height, const glm::vec3& position)
 
 {
     startPosition = position;
     Set(width, height, position);
+}
+
+void Camera::BindEntity(Entity* entity)
+{
+    m_BoundEntity = entity;
+}
+
+void Camera::SetMode(const ECameraMode &mode)
+{
+    m_Mode = mode;
 }
 
 void Camera::Set(const int width, const int height, const glm::vec3& position)
@@ -154,11 +165,23 @@ void Camera::ProcessMouseMovement(float xOffset, float yOffset, bool constrainPi
 void Camera::UpdateCameraVectors()
 {
     // Calculate the new forward vector
-    this->forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
-    this->forward.y = sin(glm::radians(pitch));
-    this->forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
-    this->forward = glm::normalize(this->forward);
-    // Also re-calculate the Right and Up vector
+    switch (m_Mode)
+    {
+    case ECameraMode::FIRST_PERSON:
+        this->forward.x = cos(glm::radians(yaw)) * cos(glm::radians(pitch));
+        this->forward.y = sin(glm::radians(pitch));
+        this->forward.z = sin(glm::radians(yaw)) * cos(glm::radians(pitch));
+        this->forward = glm::normalize(this->forward);
+        break;
+    case ECameraMode::THIRD_PERSON:
+        position = m_BoundEntity->Position() - m_BoundEntity->Forward() * m_BoundOffset + glm::vec3(0.0f,1.0f,0.0f);
+        const auto newForward = m_BoundEntity->Position() - position;
+        if (glm::length(newForward) == 0)
+            break;
+        this->forward = glm::normalize(newForward);
+        break;
+    }
+        // Also re-calculate the Right and Up vector
     right = glm::normalize(glm::cross(forward, worldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
     up = glm::normalize(glm::cross(right, forward));
 }

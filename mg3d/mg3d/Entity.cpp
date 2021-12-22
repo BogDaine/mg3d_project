@@ -5,6 +5,11 @@ Entity::Entity(const glm::vec3& pos) :
 {
 }
 
+glm::vec3 Entity::Position() const
+{
+	return m_Pos;
+}
+
 void Entity::SetScale(const float&, const float&, const float&)
 {
 }
@@ -58,9 +63,21 @@ void Entity::ExertVelocity()
 	Translate(m_Velocity * (float) TheTime::DetlaTime());
 }
 
+glm::vec3 Entity::Forward() const
+{
+	return m_Forward;
+}
+
 void Entity::Update()
 {
-	
+	// Calculate the new forward vector
+	this->m_Forward.x = cos(glm::radians(-m_Yaw)) * cos(glm::radians(m_Pitch));
+	this->m_Forward.y = sin(glm::radians(m_Pitch));
+	this->m_Forward.z = sin(glm::radians(-m_Yaw)) * cos(glm::radians(m_Pitch));
+	this->m_Forward = glm::normalize(this->m_Forward);
+	// Also re-calculate the Right and Up vector
+	m_Right = glm::normalize(glm::cross(m_Forward, { 0, 1, 0 }));//worldUp));  // Normalize the vectors, because their length gets closer to 0 the more you look up or down which results in slower movement.
+	m_Up = glm::normalize(glm::cross(m_Right, m_Forward));
 }
 
 VisibleEntity::VisibleEntity(const glm::vec3& pos):
