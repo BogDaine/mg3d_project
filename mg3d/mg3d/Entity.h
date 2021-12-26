@@ -4,10 +4,14 @@
 #include "TheTime.h"
 
 class Camera;
+class Scene;
 
 class Entity
 {
 protected:
+
+	Scene* m_SceneRef = nullptr;
+
 	glm::vec3 m_Pos;
 	glm::vec3 m_Rot;
 	glm::vec3 m_Scale = {1, 1, 1};
@@ -53,6 +57,8 @@ public:
 	glm::vec3 Forward() const;
 	glm::vec3 Up() const;
 	glm::vec3 Right() const;
+
+	void SetSceneRef(Scene*);
 
 	virtual void Draw(Shader*) {}
 	

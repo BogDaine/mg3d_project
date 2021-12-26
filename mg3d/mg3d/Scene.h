@@ -19,7 +19,9 @@ protected:
 	Skybox* m_Skybox = nullptr;
 	Terrain* m_Terrain = nullptr;
 
-	glm::vec3 m_TerrainTranslation = { -50.0f, -3.0f, -50.0f };
+	bool m_HasTerrain = false;
+
+	glm::vec3 m_TerrainTranslation = { -50.0f, -0.0f, -50.0f };
 	glm::vec3 m_TerrainScale = { 100, 0.1, 100 };
 
 	std::vector<Entity*> m_Entities;
@@ -36,14 +38,26 @@ protected:
 public:
 	Scene();
 
+	bool HasTerrain() const;
+	
 	void SetSkybox(const GLuint&);
 	
 	void SetSkybox(std::vector<std::string>&);
 
 	void SetTerrain(const std::string&);
+
 	void SetTerrain(Terrain*);
 
+	void HeightmapInfo(std::vector<Vertex>*& vertices, int& imgWidth, int& imgHeight);
+
+	glm::mat4 TerrainModelMatrix();
+
+	glm::vec3 TerrainTranslation();
+
+	glm::vec3 TerrainScale();
+
 	void PushEntity(Entity*);
+
 	
 	//TO DO: make this per-light
 	void InitShadowMap();

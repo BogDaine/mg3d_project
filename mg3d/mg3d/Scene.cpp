@@ -8,6 +8,11 @@ Scene::Scene()
 	m_PointLight1.position = { 12, 10, 15 };
 }
 
+bool Scene::HasTerrain() const
+{
+	return m_HasTerrain;
+}
+
 void Scene::SetSkybox(const GLuint& cubemap)
 {
 	delete(m_Skybox);
@@ -23,16 +28,43 @@ void Scene::SetSkybox(std::vector<std::string>& faces)
 void Scene::SetTerrain(const std::string& imagePath)
 {
 	m_Terrain = new Terrain(imagePath);
+	m_HasTerrain = true;
 }
 
 void Scene::SetTerrain(Terrain *terrain)
 {
 	m_Terrain = terrain;
+	m_HasTerrain = true;
+}
+
+void Scene::HeightmapInfo(std::vector<Vertex>*& vertices, int& imgWidth, int& imgHeight)
+{
+	m_Terrain->HeightmapInfo(vertices, imgWidth, imgHeight);
 }
 
 void Scene::PushEntity(Entity *entity)
 {
+	entity->SetSceneRef(this);
 	m_Entities.push_back(entity);
+}
+
+glm::mat4 Scene::TerrainModelMatrix()
+{
+	return glm::scale(
+			glm::translate(
+				glm::mat4(1.0), m_TerrainTranslation),
+		m_TerrainScale);
+}
+
+glm::vec3 Scene::TerrainTranslation()
+{
+	return m_TerrainTranslation;
+}
+
+glm::vec3 Scene::TerrainScale()
+{
+	return m_TerrainScale;
+	return glm::vec3();
 }
 
 void Scene::InitShadowMap()
@@ -93,9 +125,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 
 	if (m_Terrain)
 	{
-		shaders::ShadowMapDepth->SetMat4("model", glm::scale(
-			glm::translate(glm::mat4(1.0), m_TerrainTranslation),
-			m_TerrainScale));
+		shaders::ShadowMapDepth->SetMat4("model", TerrainModelMatrix());
 		m_Terrain->Draw();
 	}
 
@@ -132,7 +162,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	}
 	if (m_Terrain)
 	{
-		shader->SetMat4("model", glm::scale(glm::translate(glm::mat4(1.0), { -50, -3, -50 }), { 100, 0.1, 100 }));
+		shader->SetMat4("model", TerrainModelMatrix());
 		m_Terrain->Draw();
 	}
 	

@@ -214,7 +214,7 @@ int main()
 
 
     scene.SetSkybox(faces);
-    Submarine DummySubmarine({ 0, 10, 5 });
+    Submarine DummySubmarine({ 0, 10, 0 });
     Submarine DummySubmarine1({ 13, 45, 0 });
     DummySubmarine1.Rotate(0, 0, glm::radians(90.0f));
     scene.PushEntity(&DummySubmarine);
@@ -239,6 +239,7 @@ int main()
     //^aia de mai sus facea o sfera din submarine^
 
     scene.InitShadowMap();
+    //Terrain terrain("..\\Assets\\Heightmaps\\terrain_circle.png");
     Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_2.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\black.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\Grass.jpg");
@@ -250,6 +251,7 @@ int main()
 
     //pCamera->SetMode(ECameraMode::THIRD_PERSON);
     pCamera->SetMode(ECameraMode::FIRST_PERSON);
+    pCamera->SetSceneRef(&scene);
     pCamera->BindEntity(&DummySubmarine);
 	WindowLoop(window, scene, pCamera, &input);
 

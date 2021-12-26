@@ -32,6 +32,8 @@ class Terrain
 public:
 	Terrain(const std::string&);
 
+	void HeightmapInfo(std::vector<Vertex> *&vertices, int &imgWidth, int& imgHeight);
+
 	void InitBuffer();
 
 	void Draw();

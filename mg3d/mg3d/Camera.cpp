@@ -8,9 +8,39 @@ Camera::Camera(const int width, const int height, const glm::vec3& position)
     Set(width, height, position);
 }
 
+void Camera::ColisionCheck()
+{
+    std::vector<Vertex>* HeightMap;
+    int imgWidth, imgHeight;
+    m_SceneRef->HeightmapInfo(HeightMap, imgWidth, imgHeight);
+
+    //std::cout << HeightMap->size() << std::endl;
+    float TerrainHeight;
+    //auto TerrainPos = 
+
+    float terrainX = (position.x / m_SceneRef->TerrainScale().x) * imgWidth - m_SceneRef->TerrainTranslation().x / m_SceneRef->TerrainScale().x * imgWidth;
+    float terrainZ = (position.z / m_SceneRef->TerrainScale().z) * imgHeight - m_SceneRef->TerrainTranslation().z / m_SceneRef->TerrainScale().z * imgHeight;
+
+    //std::cout << terrainX << "   " << terrainZ << " " << std::endl;
+
+    if (terrainX < imgWidth && terrainX >= 0 && terrainZ < imgHeight && terrainZ > 0)
+    {
+        TerrainHeight = HeightMap->operator[]((int)terrainX* imgWidth + terrainZ).Position.y * m_SceneRef->TerrainScale().y;
+        //std::cout << TerrainHeight << std::endl;
+        if (position.y < TerrainHeight + 0.2)
+            position.y = TerrainHeight + 0.2;
+    }
+
+}
+
 void Camera::BindEntity(Entity* entity)
 {
     m_BoundEntity = entity;
+}
+
+void Camera::SetSceneRef(Scene *scene)
+{
+    m_SceneRef = scene;
 }
 
 void Camera::CycleModes()
@@ -57,6 +87,11 @@ void Camera::Reset(const int width, const int height)
 void Camera::Update()
 {
     UpdateCameraVectors();
+    if (m_Mode != ECameraMode::FIRST_PERSON && m_SceneRef && m_SceneRef->HasTerrain())
+    {
+        ColisionCheck();
+    }
+
 }
 
 const glm::mat4 Camera::GetViewMatrix() const

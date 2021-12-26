@@ -18,6 +18,7 @@ class Submarine :public VisibleEntity
 protected:
 	
 
+	void CollisionCheck();
 
 public:
 

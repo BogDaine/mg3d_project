@@ -1,6 +1,33 @@
 #include "Submarine.h"
 
 
+void Submarine::CollisionCheck()
+{
+
+	//auto terrainModel = m_SceneRef->TerrainModelMatrix();
+	std::vector<Vertex>* HeightMap;
+	int imgWidth, imgHeight;
+	m_SceneRef->HeightmapInfo(HeightMap, imgWidth, imgHeight);
+
+	//std::cout << HeightMap->size() << std::endl;
+	float TerrainHeight;
+	//auto TerrainPos = 
+
+	float terrainX = (m_Pos.x / m_SceneRef->TerrainScale().x) * imgWidth - m_SceneRef->TerrainTranslation().x/ m_SceneRef->TerrainScale().x * imgWidth;
+	float terrainZ = (m_Pos.z / m_SceneRef->TerrainScale().z) * imgHeight - m_SceneRef->TerrainTranslation().z / m_SceneRef->TerrainScale().z * imgHeight;
+
+	//std::cout << terrainX << "   " << terrainZ << " " << std::endl;
+
+	if (terrainX < imgWidth && terrainX >= 0 && terrainZ < imgHeight && terrainZ > 0)
+	{
+		TerrainHeight = HeightMap->operator[]((int)terrainX* imgWidth + terrainZ).Position.y * m_SceneRef->TerrainScale().y;
+		//std::cout << TerrainHeight << std::endl;
+		if (m_Pos.y < TerrainHeight + 0.02)
+			m_Pos.y = TerrainHeight + 0.02;
+	}
+	//std::cout << std::endl;
+}
+
 Submarine::Submarine(const glm::vec3& pos):
 	VisibleEntity(pos)
 {
@@ -78,6 +105,11 @@ void Submarine::Update()
 
 	ApplyDrag();
 	ExertVelocity();
+	if (m_SceneRef->HasTerrain())
+	{
+		CollisionCheck();
+	}
+
 	this->VisibleEntity::Update();
 	//Rotate(m_Pitch, 0, m_Yaw);
 	m_ModelMatrix = glm::rotate(m_ModelMatrix, glm::radians(-90.0f), { 1,0,0 });

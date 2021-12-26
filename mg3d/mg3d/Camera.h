@@ -21,6 +21,8 @@ enum class ECameraMode
     MAX
 };
 
+class Scene;
+
 class Camera
 {
 private:
@@ -30,6 +32,9 @@ private:
     const float YAW = -90.0f;
     const float PITCH = 0.0f;
     const float FOV = 45.0f;
+    
+    Scene* m_SceneRef = nullptr;
+    
 
     glm::vec3 startPosition;
 
@@ -41,7 +46,11 @@ private:
 public:
     Camera(const int width, const int height, const glm::vec3& position);
 
+    void ColisionCheck();
+
     void BindEntity(Entity*);
+
+    void SetSceneRef(Scene*);
 
     void CycleModes();
 

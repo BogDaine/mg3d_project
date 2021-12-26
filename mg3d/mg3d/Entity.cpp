@@ -78,6 +78,11 @@ glm::vec3 Entity::Right() const
 	return m_Right;
 }
 
+void Entity::SetSceneRef(Scene *scene)
+{
+	m_SceneRef = scene;
+}
+
 void Entity::Update()
 {
 	// Calculate the new forward vector

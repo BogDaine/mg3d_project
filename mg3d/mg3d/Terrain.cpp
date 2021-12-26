@@ -37,6 +37,13 @@ Terrain::Terrain(const std::string& path)
 	InitBuffer();
 }
 
+void Terrain::HeightmapInfo(std::vector<Vertex>*& vertices, int& imgWidth, int& imgHeight)
+{
+	vertices = &m_Vertices;
+	imgWidth = HMImgWidth;
+	imgHeight = HMImgHeight;
+}
+
 void Terrain::Draw()
 {
 
@@ -81,7 +88,7 @@ std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWi
 		{
 			for (int j = 0; j < HMImgWidth; j++)
 			{
-				unsigned char* pixelOffset = data + (i + HMImgHeight * j) * nrChannels;
+				unsigned char* pixelOffset = data + (i*HMImgWidth + j) * nrChannels;
 				unsigned char r = pixelOffset[0];
 
 				heightmap.push_back({
@@ -103,10 +110,10 @@ std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWi
 			for (int j = 0; j < HMImgWidth - 1; j++)
 			{
 
-				const auto& vertexA = heightmap[i * HMImgHeight + j].Position;
-				const auto& vertexB = heightmap[i * HMImgHeight + j + 1].Position;
-				const auto& vertexC = heightmap[(i + 1) * HMImgHeight + j + 1].Position;
-				const auto& vertexD = heightmap[(i + 1) * HMImgHeight + j].Position;
+				const auto& vertexA = heightmap[i * HMImgWidth + j].Position;
+				const auto& vertexB = heightmap[i * HMImgWidth + j + 1].Position;
+				const auto& vertexC = heightmap[(i + 1) * HMImgWidth + j + 1].Position;
+				const auto& vertexD = heightmap[(i + 1) * HMImgWidth + j].Position;
 
 				const auto triangleNormalA = glm::cross(vertexB - vertexA, vertexA - vertexD);
 				const auto triangleNormalB = glm::cross(vertexD - vertexC, vertexC - vertexB);
