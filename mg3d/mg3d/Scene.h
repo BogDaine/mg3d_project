@@ -44,6 +44,8 @@ public:
 	
 	void SetSkybox(std::vector<std::string>&);
 
+	void SetupSeaStuff();
+
 	void SetTerrain(const std::string&);
 
 	void SetTerrain(Terrain*);

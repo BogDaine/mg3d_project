@@ -2,6 +2,8 @@
 #include "Entity.h"
 #include "Shaders.h"
 #include "Cfg.h"
+#include "Models.h"
+#include "Utility.h"
 
 Scene::Scene()
 {
@@ -23,6 +25,90 @@ void Scene::SetSkybox(std::vector<std::string>& faces)
 {
 	delete(m_Skybox);
 	m_Skybox = new Skybox(faces);
+}
+
+void Scene::SetupSeaStuff()
+{
+	constexpr float pi = glm::pi<float>();
+	float N = 3, M = 3;
+	float r = 50;
+	
+	std::vector<Vertex>* HeightMap;
+	int imgWidth, imgHeight;
+	HeightmapInfo(HeightMap, imgWidth, imgHeight);
+
+	for (float n = 0; n < 40; n++)
+	{
+
+		
+
+		float TerrainHeight;
+		
+		auto posX = util::random_float(0.0f, 1.0f) * imgWidth; 
+		auto posZ = util::random_float(0.0f, 1.0f) * imgHeight;
+		
+		if ((int)posX < imgHeight && (int) posZ < imgWidth)
+		{
+			TerrainHeight = HeightMap->operator[]((int)posX* imgWidth + posZ).Position.y * m_TerrainScale.y;
+
+			auto position = glm::vec3(
+				(float)posX * m_TerrainScale.x / imgWidth + m_TerrainTranslation.x,
+				TerrainHeight,
+				(float)posZ * m_TerrainScale.z / imgHeight + m_TerrainTranslation.z
+			);
+
+			auto scaleX = util::random_float(0.05f, 0.1f);// * 0.2f;
+			auto scaleY = util::random_float(0.05f, 0.1f);// * 0.2f;
+			auto scaleZ = util::random_float(0.05f, 0.1f);// * 0.2f;
+
+			auto rotX = util::random_float(0.0f, glm::radians(360.0f));
+			auto rotY = util::random_float(0.0f, glm::radians(360.0f));
+			auto rotZ = util::random_float(0.0f, glm::radians(360.0f));
+
+			PushEntity(new VisibleEntity(models::Coral2,
+				position,
+				glm::vec3(glm::radians(-90.0f), 0.0f, rotZ),
+				glm::vec3(scaleX, scaleY, scaleZ)));
+		}
+	}
+
+
+	for (float n = 0; n < 40; n++)
+	{
+
+
+
+		float TerrainHeight;
+
+		auto posX = util::random_float(0.0f, 1.0f) * imgWidth;
+		auto posZ = util::random_float(0.0f, 1.0f) * imgHeight;
+
+		if ((int)posX < imgHeight && (int)posZ < imgWidth)
+		{
+			TerrainHeight = HeightMap->operator[]((int)posX* imgWidth + posZ).Position.y * m_TerrainScale.y;
+
+			auto position = glm::vec3(
+				(float)posX * m_TerrainScale.x / imgWidth + m_TerrainTranslation.x,
+				TerrainHeight,
+				(float)posZ * m_TerrainScale.z / imgHeight + m_TerrainTranslation.z
+			);
+
+			auto scaleX = util::random_float(0.4f, 1.2f);// * 0.2f;
+			auto scaleY = util::random_float(0.4f, 1.2f);// * 0.2f;
+			auto scaleZ = util::random_float(0.4f, 1.2f);// * 0.2f;
+
+			auto rotX = util::random_float(0.0f, glm::radians(360.0f));
+			auto rotY = util::random_float(0.0f, glm::radians(360.0f));
+			auto rotZ = util::random_float(0.0f, glm::radians(360.0f));
+
+			PushEntity(new VisibleEntity(models::Coral1,
+				position,
+				glm::vec3(0.0f, rotY, 0.0f),
+				glm::vec3(scaleX, scaleY, scaleZ)));
+		}
+	}
+
+
 }
 
 void Scene::SetTerrain(const std::string& imagePath)
@@ -108,7 +194,7 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	//m_PointLight1.position = pCamera->GetPosition();
 	glm::mat4 lightProjection, lightView;
 	glm::mat4 lightSpaceMatrix;
-	float near_plane = 0.1f, far_plane = 500.0f;
+	float near_plane = 0.3f, far_plane = 250.0f;
 	lightProjection = glm::ortho(-60.0f, 60.0f, -60.0f, 60.0f, near_plane, far_plane);
 	lightView = glm::lookAt(m_PointLight1.position, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
 	lightSpaceMatrix = lightProjection * lightView;

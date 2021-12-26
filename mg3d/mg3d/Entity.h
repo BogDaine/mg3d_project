@@ -80,6 +80,8 @@ public:
 
 	VisibleEntity(Model*, const glm::vec3&);
 
+	VisibleEntity(Model*, const glm::vec3& pos, const glm::vec3& rot, const glm::vec3& scale);
+
 	void SetModel(Model*);
 
 	virtual void Draw(Shader*) override;

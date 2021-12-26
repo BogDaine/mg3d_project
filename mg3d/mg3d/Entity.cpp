@@ -109,6 +109,16 @@ VisibleEntity::VisibleEntity(Model* model, const glm::vec3& pos) :
 {
 }
 
+VisibleEntity::VisibleEntity(Model *model, const glm::vec3& pos, const glm::vec3& rot, const glm::vec3& scale):
+	Entity(pos),
+	m_ModelMatrix(glm::translate(glm::mat4(1), pos)),
+	m_NormalMatrix(glm::transpose(glm::inverse(m_ModelMatrix))),
+	m_Model(model)
+{
+	m_Rot = rot;
+	m_Scale = scale;
+}
+
 
 
 void VisibleEntity::Update()

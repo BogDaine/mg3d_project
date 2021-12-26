@@ -170,6 +170,7 @@
     <ClCompile Include="Terrain.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TheTime.cpp" />
+    <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\shaders\obj_default_frag.shader" />
@@ -214,6 +215,7 @@
     <ClInclude Include="Skybox.h" />
     <ClInclude Include="Submarine.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="Utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

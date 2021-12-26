@@ -53,6 +53,9 @@ uniform Material material;
 uniform Light light;
 uniform sampler2D shadowMap;
 
+uniform float zNear;
+uniform float zFar;
+
 vec3 calculateGlobalPointLight() { return vec3(1.0f, 1.0f, 1.0f); }
 vec3 calculatePointLight() { return vec3(1.0f, 1.0f, 1.0f); }
 vec3 calculateDirLight() { return vec3(1.0f, 1.0f, 1.0f); }
@@ -94,6 +97,20 @@ float ShadowCalculation(vec4 fragPosLightSpace)
 	return shadow;
 }
 
+float near = 0.1f;
+float far = 80.0f;
+float LinearizeDepth(float depth)
+{
+	
+	return (2.0f * near * far) / (far + near - (depth * 2.0f - 1.0f) * (far - near));
+}
+
+float LogisticDepth(float depth, float steepness = 0.1f, float offset = 5.0f)
+{
+	float zVal = LinearizeDepth(depth);
+	return (1 / (1 + exp(-steepness * (zVal - offset))));
+}
+
 void main()
 {
 	vec3 ambient = light.ambient * (//vec3(texture(material.diffuse, TexCoords)) +
@@ -120,4 +137,7 @@ void main()
 	Fragcolor = vec4((ambient + (1.0 - shadow) * (diffuse + specular) /*+ emmission*/), 1.0f);
 	//Fragcolor = texture(material.diffuse, TexCoords);
 	Fragcolor.w = 1.0f;
+
+	float depth = LogisticDepth(gl_FragCoord.z);// / far;
+	Fragcolor = vec4(vec3(Fragcolor) * (1 - depth) + depth * vec3(0.1f, 0.1f, 0.4f), 1.0f);
 }

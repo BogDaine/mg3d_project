@@ -27,8 +27,8 @@ class Camera
 {
 private:
     // Default camera values
-    const float zNEAR = 0.01f;
-    const float zFAR = 500.f;
+    const float zNEAR = 0.1f;
+    const float zFAR = 80.f;
     const float YAW = -90.0f;
     const float PITCH = 0.0f;
     const float FOV = 45.0f;
@@ -41,7 +41,7 @@ private:
     ECameraMode m_Mode = ECameraMode::FIRST_PERSON;
 
     Entity* m_BoundEntity;
-    glm::vec3 m_BoundOffset = glm::vec3(0.0f, 2.5f, -6);
+    glm::vec3 m_BoundOffset = glm::vec3(0.0f, 2.5f, -10);
 
 public:
     Camera(const int width, const int height, const glm::vec3& position);

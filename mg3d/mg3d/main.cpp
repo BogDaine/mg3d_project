@@ -220,7 +220,7 @@ int main()
     scene.PushEntity(&DummySubmarine);
     //scene.PushEntity(&DummySubmarine1);
 
-    DummySubmarine.Scale(0.05, 0.05, 0.05);
+    DummySubmarine.Scale(0.1, 0.1, 0.1);
     input.BindSubmarine(&DummySubmarine);
 
     /*constexpr float pi = glm::pi<float>();
@@ -240,7 +240,7 @@ int main()
 
     scene.InitShadowMap();
     //Terrain terrain("..\\Assets\\Heightmaps\\terrain_circle.png");
-    Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_2.png");
+    Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_3.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\black.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\Grass.jpg");
    // terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
@@ -253,6 +253,9 @@ int main()
     pCamera->SetMode(ECameraMode::FIRST_PERSON);
     pCamera->SetSceneRef(&scene);
     pCamera->BindEntity(&DummySubmarine);
+
+    scene.SetupSeaStuff();
+
 	WindowLoop(window, scene, pCamera, &input);
 
     return 0;

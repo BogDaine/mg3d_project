@@ -60,7 +60,7 @@ void Submarine::HandleInput(const eSubmarineControl& command)
 	{
 
 	case eSubmarineControl::FORWARD:
-		AddForce(m_Forward * (float)TheTime::DetlaTime());
+		AddForce(m_Forward * 1.6f * (float)TheTime::DetlaTime());
 		break;
 	case eSubmarineControl::BACKWARD:
 		AddForce( - m_Forward * (float)TheTime::DetlaTime());
