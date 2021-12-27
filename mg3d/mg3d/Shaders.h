@@ -8,5 +8,8 @@ namespace shaders
 	extern Shader* DefaultObjShadows;
 	extern Shader* ShadowMapDepth;
 	extern Shader* Shadow_Lab;
+	extern Shader* BasicDepth;
+
+	extern Shader* Everything;
 	void InitShaders();
 }

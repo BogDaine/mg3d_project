@@ -24,6 +24,8 @@ protected:
 	glm::vec3 m_TerrainTranslation = { -50.0f, -0.0f, -50.0f };
 	glm::vec3 m_TerrainScale = { 100, 0.1, 100 };
 
+	float m_WaterLevel = 40;
+
 	std::vector<Entity*> m_Entities;
 
 	Light m_PointLight1 = lights::WHITE;
@@ -37,6 +39,8 @@ protected:
 
 public:
 	Scene();
+
+	float WaterLevel()const;
 
 	bool HasTerrain() const;
 	
@@ -66,5 +70,5 @@ public:
 
 	virtual void Update();
 
-	virtual void Draw(Camera* pCamera, Shader* shader, const GLuint&);
+	virtual void Draw(Camera* pCamera, Shader* shader, const GLuint&, const bool& shadowmap = 1);
 };

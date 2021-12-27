@@ -3,7 +3,7 @@
 
 #include <iostream>
 
-FrameBuffer::FrameBuffer()
+FrameBuffer::FrameBuffer(const eFBOTypes& type)
 {
 
 	glGenFramebuffers(1, &m_ID);
@@ -12,7 +12,7 @@ FrameBuffer::FrameBuffer()
 	glGenTextures(1, &m_TextureID);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, m_TextureID);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, cfg::GetWindowWidth(), cfg::GetWindowHeight(), 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, cfg::GetWindowWidth(), cfg::GetWindowHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);

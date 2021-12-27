@@ -10,6 +10,11 @@ Scene::Scene()
 	m_PointLight1.position = { 12, 10, 15 };
 }
 
+float Scene::WaterLevel() const
+{
+	return m_WaterLevel;
+}
+
 bool Scene::HasTerrain() const
 {
 	return m_HasTerrain;
@@ -185,7 +190,7 @@ void Scene::Update()
 	}
 }
 
-void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
+void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO, const bool &shadowmap)
 {
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function
@@ -199,32 +204,36 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	lightView = glm::lookAt(m_PointLight1.position, glm::vec3(0.0f), glm::vec3(0.0, 1.0, 0.0));
 	lightSpaceMatrix = lightProjection * lightView;
 
-	shaders::ShadowMapDepth->SetMat4("lightSpaceMatrix", lightSpaceMatrix);
 	shader->SetMat4("lightSpaceMatrix", lightSpaceMatrix);
-	glViewport(0, 0, cfg::GetShadowWidth(), cfg::GetShadowHeight());
 
-	glBindFramebuffer(GL_FRAMEBUFFER, m_DepthMapFBO);
+	if (shadowmap)
+	{
+		glViewport(0, 0, cfg::GetShadowWidth(), cfg::GetShadowHeight());
+		shaders::ShadowMapDepth->SetMat4("lightSpaceMatrix", lightSpaceMatrix);
+		glBindFramebuffer(GL_FRAMEBUFFER, m_DepthMapFBO);
+
+		glClear(GL_DEPTH_BUFFER_BIT);
+
+		shaders::ShadowMapDepth->Bind();
+
+		if (m_Terrain)
+		{
+			shaders::ShadowMapDepth->SetMat4("model", TerrainModelMatrix());
+			m_Terrain->Draw();
+		}
+
+		for (const auto& entity : m_Entities)
+		{
+			entity->Draw(shaders::ShadowMapDepth);
+		}
+
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glViewport(0, 0, cfg::GetWindowWidth(), cfg::GetWindowHeight());
+		//
+	}
+	glBindFramebuffer(GL_FRAMEBUFFER, FBO);
 
 	glClear(GL_DEPTH_BUFFER_BIT);
-
-	shaders::ShadowMapDepth->Bind();
-
-	if (m_Terrain)
-	{
-		shaders::ShadowMapDepth->SetMat4("model", TerrainModelMatrix());
-		m_Terrain->Draw();
-	}
-
-	for (const auto& entity : m_Entities)
-	{
-		entity->Draw(shaders::ShadowMapDepth);
-	}
-	
-	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-	glViewport(0, 0, cfg::GetWindowWidth(), cfg::GetWindowHeight());
-	//
-
-	glBindFramebuffer(GL_FRAMEBUFFER, FBO);
 
 	shader->SetMat4("model", glm::mat4(1));
 	shader->SetMat4("projection", pCamera->GetProjectionMatrix());
@@ -255,5 +264,6 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO)
 	if(m_Skybox) m_Skybox->Draw(pCamera);
 	
 	//also draw lights that need to be drawn;
+	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 		
 }

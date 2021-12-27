@@ -56,6 +56,8 @@ uniform sampler2D shadowMap;
 uniform float zNear;
 uniform float zFar;
 
+uniform int underwater;
+
 vec3 calculateGlobalPointLight() { return vec3(1.0f, 1.0f, 1.0f); }
 vec3 calculatePointLight() { return vec3(1.0f, 1.0f, 1.0f); }
 vec3 calculateDirLight() { return vec3(1.0f, 1.0f, 1.0f); }
@@ -137,8 +139,11 @@ void main()
 	vec3 emmission = vec3(texture(material.emmission, TexCoords));
 	Fragcolor = vec4((ambient + (1.0 - shadow) * (diffuse + specular) /*+ emmission*/), 1.0f);
 	//Fragcolor = texture(material.diffuse, TexCoords);
-	Fragcolor.w = 1.0f;
 
-	float depth = LogisticDepth(gl_FragCoord.z);// / far;
-	Fragcolor = vec4(vec3(Fragcolor) * (1 - depth) + depth * vec3(0.1f, 0.1f, 0.4f), 1.0f);
+	if (underwater != 0)
+	{
+		float depth = LogisticDepth(gl_FragCoord.z);// / far;
+	//gl_FragDepth = depth;
+		Fragcolor = vec4(vec3(Fragcolor) * (1 - depth) + depth * vec3(0.1f, 0.1f, 0.4f), 1.0f);
+	}
 }

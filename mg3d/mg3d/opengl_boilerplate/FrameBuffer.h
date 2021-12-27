@@ -6,6 +6,12 @@
 #include <VertexBufferLayout.h>
 #include <vector>
 
+enum class eFBOTypes
+{
+	COLOR,
+	DEPTH
+};
+
 class FrameBuffer
 {
 	unsigned int m_ID;
@@ -15,7 +21,7 @@ class FrameBuffer
 	unsigned int m_RenderBuffer;
 
 public:
-	FrameBuffer();
+	FrameBuffer(const eFBOTypes& type = eFBOTypes::COLOR);
 	~FrameBuffer();
 	
 	unsigned int GetID();

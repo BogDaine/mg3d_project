@@ -63,6 +63,7 @@ void Submarine::HandleInput(const eSubmarineControl& command)
 		AddForce(m_Forward * 1.6f * (float)TheTime::DetlaTime());
 		break;
 	case eSubmarineControl::BACKWARD:
+		if(glm::length(m_Velocity))
 		AddForce( - m_Forward * (float)TheTime::DetlaTime());
 		break;
 	case eSubmarineControl::LEFT:

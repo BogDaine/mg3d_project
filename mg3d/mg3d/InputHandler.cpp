@@ -7,6 +7,8 @@
 
 #include <iostream>
 
+#include "Shaders.h"
+
 InputHandler::InputHandler(GLFWwindow* window, Camera* camera):
 	m_BoundWindow(window),
 	m_BoundCamera(camera)
@@ -71,6 +73,56 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 	{
 	case GLFW_PRESS:
 		key_pressed[key] = true;
+		key_toggled[key] = !key_toggled[key];
+
+		switch (key)
+		{
+		case GLFW_KEY_1:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("chaos", 1);
+			}
+			else
+				shaders::Everything->SetInt("chaos", 0);
+			break;
+		case GLFW_KEY_2:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("blackandwhite", 1);
+			}
+			else
+				shaders::Everything->SetInt("blackandwhite", 0);
+			break;
+
+		case GLFW_KEY_3:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("sharpness", 1);
+			}
+			else
+				shaders::Everything->SetInt("sharpness", 0);
+			break;
+
+		case GLFW_KEY_4:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("shake", 1);
+				shaders::DefaultObjShadows->SetInt("shake", 1);
+			}
+			else
+				shaders::Everything->SetInt("shake", 0);
+				shaders::DefaultObjShadows->SetInt("shake", 0);
+			break;
+
+		case GLFW_KEY_5:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("blur", 1);
+			}
+			else
+				shaders::Everything->SetInt("blur", 0);
+			break;
+		}
 
 		switch (m_InputMode)
 		{
@@ -95,6 +147,7 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 				SetInputMode(eInputMode::CAMERA_FIRST_PERSON);
 				m_BoundCamera->SetFirstMouseMove(true);
 				break;
+			
 			}
 
 		}

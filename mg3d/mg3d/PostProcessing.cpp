@@ -1,5 +1,6 @@
 #include "PostProcessing.h"
 #include "Cfg.h"
+#include "Shaders.h"
 
 static bool initialised = false;
 static VertexBuffer* VBO;
@@ -13,6 +14,7 @@ namespace shaders
 	Shader* NoEffects = nullptr;
 	Shader* BlackAndWhite = nullptr;
 	Shader* Kernel = nullptr;
+	
 }
 
 
@@ -64,6 +66,24 @@ void PostProcess::Init()
     initialised = true;
 }
 
+void PostProcess::Everything(const unsigned int& screenTexture, const unsigned int& DepthMap)
+{
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, screenTexture);
+
+
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, DepthMap);
+
+	shaders::Everything->SetInt("screenTexture", 0);
+	shaders::Everything->SetInt("DepthMap", 1);
+
+	VAO->bind();
+	glDrawArrays(GL_QUADS, 0, sizeof(PostPr::rectangleVertices) / sizeof(float));
+	VAO->unbind();
+
+}
+
 void PostProcess::NoEffects(const unsigned int& texture)
 {
 	if (shaders::NoEffects == nullptr)
@@ -106,7 +126,6 @@ void PostProcess::BlackAndWhite(const unsigned int& texture)
 	VAO->bind();
 
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 	glDrawArrays(GL_QUADS, 0, 4);
 	VAO->unbind();

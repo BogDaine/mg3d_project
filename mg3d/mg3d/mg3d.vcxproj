@@ -173,6 +173,7 @@
     <ClCompile Include="Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\shaders\basicDepth_frag.shader" />
     <None Include="..\shaders\obj_default_frag.shader" />
     <None Include="..\shaders\obj_default_shadows_frag.shader" />
     <None Include="..\shaders\obj_default_shadows_vert.shader" />
@@ -181,6 +182,7 @@
     <None Include="..\shaders\postprocess\default_vert.shader" />
     <None Include="..\shaders\postprocess\kernel_frag.shader" />
     <None Include="..\shaders\postprocess\no_effects_frag.shader" />
+    <None Include="..\shaders\postprocess\omnishader.shader" />
     <None Include="..\shaders\ShadowMapping.fs" />
     <None Include="..\shaders\ShadowMapping.vs" />
     <None Include="..\shaders\shadow_map_depth_frag.shader" />

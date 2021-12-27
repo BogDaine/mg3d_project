@@ -16,12 +16,12 @@ float kernel[9] = float[]
     -1,-1,-1
     );
 
-//float kernel[9] = float[]
-//(
-//    0, -1, 0,
-//    -1, 5, -1,
-//   0, -1, 0
-//    );
+float sharpness[9] = float[]
+(
+    0, -1, 0,
+    -1, 5, -1,
+   0, -1, 0
+    );
 
 void main()
 {

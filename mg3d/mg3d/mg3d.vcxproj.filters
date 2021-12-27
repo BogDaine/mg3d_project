@@ -148,6 +148,12 @@
     <None Include="..\shaders\ShadowMapping.vs">
       <Filter>Shaders</Filter>
     </None>
+    <None Include="..\shaders\basicDepth_frag.shader">
+      <Filter>Shaders\Depth Shaders</Filter>
+    </None>
+    <None Include="..\shaders\postprocess\omnishader.shader">
+      <Filter>Shaders\Postprocessing</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opengl_boilerplate\VertexArray.h">

@@ -22,6 +22,7 @@ protected:
 	int m_InputMode = eInputMode::CAMERA_FIRST_PERSON;
 
 	bool key_pressed[360] = { false };
+	bool key_toggled[360] = { false };
 
 public:
 
