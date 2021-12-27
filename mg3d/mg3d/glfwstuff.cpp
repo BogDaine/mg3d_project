@@ -59,7 +59,8 @@ void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera, InputHandler*
 	while (!glfwWindowShouldClose(window))
 	{
 		TheTime::UpdateDeltaTime();
-		shaders::DefaultObjShadows->SetInt("time", (float)TheTime::LastTime());
+		shaders::DefaultObjShadows->SetFloat("time", (float)TheTime::LastTime());
+		shaders::Everything->SetFloat("time", (float)TheTime::LastTime());
 		Renderer::Clear();
 
 		//draw everything here, or in separate function(s) called here, probably

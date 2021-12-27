@@ -27,6 +27,7 @@ class Camera
 {
 private:
     // Default camera values
+    bool m_Sonar = false;
     const float zNEAR = 0.1f;
     const float zFAR = 80.f;
     const float YAW = -90.0f;
@@ -59,6 +60,10 @@ public:
     void Set(const int width, const int height, const glm::vec3& position);
 
     void Reset(const int width, const int height);
+
+    void SetSonar(const bool& val);
+    
+    bool Sonar()  const;
 
     void Update();
 

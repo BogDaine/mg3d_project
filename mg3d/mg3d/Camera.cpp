@@ -84,6 +84,16 @@ void Camera::Reset(const int width, const int height)
     Set(width, height, startPosition);
 }
 
+void Camera::SetSonar(const bool& val)
+{
+    m_Sonar = val;
+}
+
+bool Camera::Sonar() const
+{
+    return m_Sonar;
+}
+
 void Camera::Update()
 {
     UpdateCameraVectors();

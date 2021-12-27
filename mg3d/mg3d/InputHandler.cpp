@@ -80,10 +80,16 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 		case GLFW_KEY_1:
 			if (key_toggled[key])
 			{
+				m_BoundCamera->SetSonar(true);
 				shaders::Everything->SetInt("chaos", 1);
+				//shaders::DefaultObjShadows->SetInt("underwater", 0);
 			}
 			else
+			{
 				shaders::Everything->SetInt("chaos", 0);
+				m_BoundCamera->SetSonar(false);
+				//shaders::DefaultObjShadows->SetInt("underwater", 1);
+			}
 			break;
 		case GLFW_KEY_2:
 			if (key_toggled[key])
@@ -103,15 +109,17 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 				shaders::Everything->SetInt("sharpness", 0);
 			break;
 
-		case GLFW_KEY_4:
+		case GLFW_KEY_0:
 			if (key_toggled[key])
 			{
-				shaders::Everything->SetInt("shake", 1);
-				shaders::DefaultObjShadows->SetInt("shake", 1);
+				shaders::Everything->SetInt("rave", 1);
+				shaders::DefaultObjShadows->SetInt("rave", 1);
 			}
 			else
-				shaders::Everything->SetInt("shake", 0);
-				shaders::DefaultObjShadows->SetInt("shake", 0);
+			{
+				shaders::Everything->SetInt("rave", 0);
+				shaders::DefaultObjShadows->SetInt("rave", 0);
+			}
 			break;
 
 		case GLFW_KEY_5:
@@ -121,6 +129,24 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 			}
 			else
 				shaders::Everything->SetInt("blur", 0);
+			break;
+
+		case GLFW_KEY_6:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("inverted", 1);
+			}
+			else
+				shaders::Everything->SetInt("inverted", 0);
+			break;
+
+		case GLFW_KEY_MINUS:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("rave", 1);
+			}
+			else
+				shaders::Everything->SetInt("rave", 0);
 			break;
 		}
 

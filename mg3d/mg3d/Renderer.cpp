@@ -28,21 +28,22 @@ void Renderer::DrawScene(Scene& scene, Camera* pCamera)
 
 	glDisable(GL_DEPTH_TEST);
 
-	FBO->Unbind();
 	
-	if (pCamera->GetPosition().y < scene.WaterLevel())
+	if (!pCamera->Sonar() && pCamera->GetPosition().y < scene.WaterLevel())
 	{
 		shaders::DefaultObjShadows->SetInt("underwater", 1);
 	}
 	else
+	{
 		shaders::DefaultObjShadows->SetInt("underwater", 0);
-
+	}
 	shaders::Everything->SetFloat("scr_width", cfg::GetWindowWidth());
 	shaders::Everything->SetFloat("scr_height", cfg::GetWindowHeight());
 	
 	//glFramebufferDrawBufferEXT();
 	//PostProcess::Kernel(FBO->GetTexture());
 	//PostProcess::BlackAndWhite(FBO->GetTexture());
+	FBO->Unbind();
 	//PostProcess::NoEffects(FBO->GetTexture());
 	PostProcess::Everything(FBO->GetTexture(), DFBO->GetTexture());
 }

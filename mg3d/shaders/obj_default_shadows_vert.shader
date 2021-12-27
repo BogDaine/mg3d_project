@@ -20,21 +20,19 @@ uniform mat4 lightSpaceMatrix;
 
 uniform mat3 NormalMatrix;
 
-uniform int shake;
+uniform int rave;
 uniform float time;
 
 void main()
 {
 	vec4 pos = position;
-	if (shake != 0)
+	if (rave != 0)
 	{
-		float strength = 100.0f;
-		pos.x +=  strength;
-		pos.y +=  strength;
-		pos.z +=  strength;
-		//cos(time)*
-		//	cos(time)*
-		//	cos(time)*
+		float strength = 1.0f;
+		pos.x += cos(time*9) * strength * 20;
+		pos.y += cos(time*9) * strength;
+		pos.z += sin(time*9) * strength * 20;
+		//pos = -pos;
 	}
 
 	gl_Position = projection * view * model * pos;

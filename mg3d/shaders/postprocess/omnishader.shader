@@ -12,6 +12,10 @@ uniform int chaos;
 uniform int blackandwhite;
 uniform int sharpness;
 uniform int blur;
+uniform int inverted;
+uniform int rave;
+
+uniform float time;
 
 
 uniform float scr_height;
@@ -83,7 +87,7 @@ vec4 Blur()
 	// GAUSSIAN BLUR SETTINGS {{{
 	float Directions = 16.0; // BLUR DIRECTIONS (Default 16.0 - More is better but slower)
 	float Quality = 2.6; // BLUR QUALITY (Default 4.0 - More is better but slower)
-	float Size = 3.0; // BLUR SIZE (Radius)
+	float Size = 8.0; // BLUR SIZE (Radius)
 	// GAUSSIAN BLUR SETTINGS }}}
 
 	vec2 Radius;
@@ -144,6 +148,18 @@ void main()
 	{
 		vec3 lum = vec3(0.299, 0.587, 0.114);
 		Fragcolor = vec4(vec3(dot(Fragcolor.rgb, lum)), 1.0f);
+	}
+
+	if (inverted != 0)
+	{
+		Fragcolor = vec4(1.0f) - Fragcolor;
+		Fragcolor.w = 1.0f;
+	}
+	if (rave != 0)
+	{
+		Fragcolor.r *= cos(time * 3);
+		Fragcolor.g *= sin(time * 3)/2;
+		Fragcolor.b *= sin(time * 5);
 	}
 	//gl_FragColor = vec4(texture(screenTexture, texCoords));
 	//if (underwater != 0)
