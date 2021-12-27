@@ -89,8 +89,8 @@ void Camera::Update()
     UpdateCameraVectors();
     if (m_Mode != ECameraMode::FIRST_PERSON && m_SceneRef && m_SceneRef->HasTerrain())
     {
-        ColisionCheck();
     }
+        ColisionCheck();
 
 }
 
