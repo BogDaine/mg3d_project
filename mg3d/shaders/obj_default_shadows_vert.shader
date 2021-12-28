@@ -11,10 +11,14 @@ out vec3 Normal;
 out vec3 FragPos;
 out vec4 FragPosLightSpace;
 
+out vec3 reflectedVector;
+
 uniform vec4 u_Pos;
 uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
+
+uniform vec3 cameraPosition;
 
 uniform mat4 lightSpaceMatrix;
 
@@ -35,9 +39,14 @@ void main()
 		//pos = -pos;
 	}
 
-	gl_Position = projection * view * model * pos;
+	vec4 worldPosition = model * pos;
+	gl_Position = projection * view * worldPosition;
+
 	FragPos = vec3(model * pos);
 	Normal = NormalMatrix * normalize(aNormal);
 	TexCoords = aTexCoords;
 	FragPosLightSpace = lightSpaceMatrix * vec4(FragPos, 1.0);
+
+	vec3 viewVector = normalize(worldPosition.xyz - cameraPosition);
+	reflectedVector = reflect(viewVector, Normal);
 }

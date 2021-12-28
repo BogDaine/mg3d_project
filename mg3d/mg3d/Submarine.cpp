@@ -109,6 +109,8 @@ void Submarine::Update()
 	if (m_SceneRef->HasTerrain())
 	{
 		CollisionCheck();
+		if (m_Pos.y > m_SceneRef->WaterLevel())
+			m_Pos.y = m_SceneRef->WaterLevel();
 	}
 
 	this->VisibleEntity::Update();

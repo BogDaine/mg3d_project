@@ -240,14 +240,19 @@ int main()
 
     scene.InitShadowMap();
     //Terrain terrain("..\\Assets\\Heightmaps\\terrain_circle.png");
-    Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_3.png");
+    Terrain terrain("..\\Assets\\Heightmaps\\terrain_smaller_4.png");
+    //Terrain terrain("..\\Assets\\Heightmaps\\water.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\black.png");
     //Terrain terrain("..\\Assets\\Misc_textures\\Grass.jpg");
    // terrain.SetTexture1("..\\Assets\\Misc_textures\\white_pixel.png");
     terrain.SetTexture1("..\\Assets\\Misc_textures\\ocean_floor.jpg");
     //terrain.SetTexture1("..\\Assets\\Misc_textures\\Grass.jpg");
 
+    Terrain water("..\\Assets\\Heightmaps\\water.png");
+    water.SetTexture1("..\\Assets\\Misc_textures\\water2.jpg");
+
     scene.SetTerrain(&terrain);
+    scene.SetWater(&water);
 
     //pCamera->SetMode(ECameraMode::THIRD_PERSON);
     pCamera->SetMode(ECameraMode::FIRST_PERSON);

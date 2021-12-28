@@ -68,7 +68,7 @@ void Skybox::Draw(Camera *pCamera)
     shaders::SkyboxShader->SetMat4("view", glm::mat4(glm::mat3(pCamera->GetViewMatrix())));
     shaders::SkyboxShader->SetMat4("projection", pCamera->GetProjectionMatrix());
 
-
+    glBindTexture(GL_TEXTURE_CUBE_MAP, m_TextureID);
 
     VAO->bind();
     IBO->bind();

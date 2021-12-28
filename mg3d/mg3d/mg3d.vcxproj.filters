@@ -154,6 +154,9 @@
     <None Include="..\shaders\postprocess\omnishader.shader">
       <Filter>Shaders\Postprocessing</Filter>
     </None>
+    <None Include="..\shaders\water_frag.shader">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="opengl_boilerplate\VertexArray.h">
@@ -236,6 +239,9 @@
     </ClInclude>
     <ClInclude Include="Utility.h">
       <Filter>Header Files\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Water.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

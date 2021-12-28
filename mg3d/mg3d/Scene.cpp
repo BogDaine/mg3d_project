@@ -56,6 +56,11 @@ void Scene::SetupSeaStuff()
 		{
 			TerrainHeight = HeightMap->operator[]((int)posX* imgWidth + posZ).Position.y * m_TerrainScale.y;
 
+			if (TerrainHeight > m_WaterLevel - 2.0f)
+			{
+				continue;
+			}
+
 			auto position = glm::vec3(
 				(float)posX * m_TerrainScale.x / imgWidth + m_TerrainTranslation.x,
 				TerrainHeight,
@@ -92,6 +97,11 @@ void Scene::SetupSeaStuff()
 		{
 			TerrainHeight = HeightMap->operator[]((int)posX* imgWidth + posZ).Position.y * m_TerrainScale.y;
 
+			if (TerrainHeight > m_WaterLevel - 2.0f)
+			{
+				continue;
+			}
+
 			auto position = glm::vec3(
 				(float)posX * m_TerrainScale.x / imgWidth + m_TerrainTranslation.x,
 				TerrainHeight,
@@ -126,6 +136,11 @@ void Scene::SetTerrain(Terrain *terrain)
 {
 	m_Terrain = terrain;
 	m_HasTerrain = true;
+}
+
+void Scene::SetWater(Terrain *water)
+{
+	m_Water = water;
 }
 
 void Scene::HeightmapInfo(std::vector<Vertex>*& vertices, int& imgWidth, int& imgHeight)
@@ -190,7 +205,7 @@ void Scene::Update()
 	}
 }
 
-void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO, const bool &shadowmap)
+void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO, const bool& underwater, const bool &shadowmap)
 {
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function
@@ -260,8 +275,39 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO, const bool 
 		shader->SetMat4("model", TerrainModelMatrix());
 		m_Terrain->Draw();
 	}
+
+	if (m_Water)
+	{
+		if (m_Skybox)
+		{
+			shaders::Water->SetInt("skybox", 0);
+		}
+
+		glm::mat4 model(1.0f);
+		model = glm::translate(model, m_TerrainTranslation + glm::vec3(0.0f, m_WaterLevel - 0.4f, 0.0f));
+		model = glm::scale(model, glm::vec3(1.0f, 0.5f, 1.0f) * m_TerrainScale);
+
+		shaders::Water->SetMat4("projection", pCamera->GetProjectionMatrix());
+		shaders::Water->SetMat4("view", pCamera->GetViewMatrix());
+		shaders::Water->SetInt("shadowMap", 8);
+		glActiveTexture(GL_TEXTURE8);
+		GLCall(glBindTexture(GL_TEXTURE_2D, m_DepthMap));
+
+		shaders::Water->SetMat3("NormalMatrix", normal_mat);
+		shaders::Water->SetVec3("viewPos", pCamera->GetPosition());
+		shaders::Water->SetLight(m_PointLight1);
+		shaders::Water->SetVec3("lightPos", m_PointLight1.position);
+		shaders::Water->SetFloat("material.shininess", 0.6 * 128);
+		shaders::Water->SetMat4("model", model);
+
+
+		m_Water->Draw();
+	}
 	
-	if(m_Skybox) m_Skybox->Draw(pCamera);
+	if (m_Skybox && !underwater)
+	{
+		m_Skybox->Draw(pCamera);
+	}
 	
 	//also draw lights that need to be drawn;
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);

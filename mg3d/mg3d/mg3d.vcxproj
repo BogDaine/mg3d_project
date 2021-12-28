@@ -189,6 +189,7 @@
     <None Include="..\shaders\shadow_map_depth_vert.shader" />
     <None Include="..\shaders\skybox_frag.shader" />
     <None Include="..\shaders\skybox_vert.shader" />
+    <None Include="..\shaders\water_frag.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="glfwstuff.h" />
+    <ClInclude Include="Water.h" />
     <ClInclude Include="Terrain.h" />
     <ClInclude Include="TheTime.h" />
     <ClInclude Include="InputHandler.h" />

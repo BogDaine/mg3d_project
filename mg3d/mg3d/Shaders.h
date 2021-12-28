@@ -9,6 +9,7 @@ namespace shaders
 	extern Shader* ShadowMapDepth;
 	extern Shader* Shadow_Lab;
 	extern Shader* BasicDepth;
+	extern Shader* Water;
 
 	extern Shader* Everything;
 	void InitShaders();

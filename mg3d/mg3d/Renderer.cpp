@@ -16,6 +16,8 @@ void Renderer::Clear()
 	GLCall(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 }
 
+static bool underwater = false;
+
 void Renderer::DrawScene(Scene& scene, Camera* pCamera)
 {
 	FBO->Bind();
@@ -24,7 +26,7 @@ void Renderer::DrawScene(Scene& scene, Camera* pCamera)
 	glEnable(GL_DEPTH_TEST);
 
 	//scene.Draw(pCamera, shaders::BasicDepth, DFBO->GetID(), false);
-	scene.Draw(pCamera, shaders::DefaultObjShadows, FBO->GetID());
+	scene.Draw(pCamera, shaders::DefaultObjShadows, FBO->GetID(), underwater);
 
 	glDisable(GL_DEPTH_TEST);
 
@@ -32,10 +34,16 @@ void Renderer::DrawScene(Scene& scene, Camera* pCamera)
 	if (!pCamera->Sonar() && pCamera->GetPosition().y < scene.WaterLevel())
 	{
 		shaders::DefaultObjShadows->SetInt("underwater", 1);
+		underwater = true;
 	}
 	else
 	{
-		shaders::DefaultObjShadows->SetInt("underwater", 0);
+		underwater = false;
+		if (pCamera->Sonar())
+		{
+			shaders::DefaultObjShadows->SetInt("underwater", 0);
+		}
+		
 	}
 	shaders::Everything->SetFloat("scr_width", cfg::GetWindowWidth());
 	shaders::Everything->SetFloat("scr_height", cfg::GetWindowHeight());
@@ -46,6 +54,9 @@ void Renderer::DrawScene(Scene& scene, Camera* pCamera)
 	FBO->Unbind();
 	//PostProcess::NoEffects(FBO->GetTexture());
 	PostProcess::Everything(FBO->GetTexture(), DFBO->GetTexture());
+
+	shaders::DefaultObjShadows->SetVec3("cameraPosition", pCamera->GetPosition());
+	shaders::DefaultObjShadows->SetVec3("cameraPosition", pCamera->GetPosition());
 }
 
 static void InitDepthBuffer()
