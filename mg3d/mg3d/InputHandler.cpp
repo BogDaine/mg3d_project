@@ -148,6 +148,15 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 			else
 				shaders::Everything->SetInt("rave", 0);
 			break;
+
+		case GLFW_KEY_EQUAL:
+			if (key_toggled[key])
+			{
+				shaders::Everything->SetInt("swirl", 1);
+			}
+			else
+				shaders::Everything->SetInt("swirl", 0);
+			break;
 		}
 
 		switch (m_InputMode)

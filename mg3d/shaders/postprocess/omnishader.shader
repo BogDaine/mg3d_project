@@ -1,4 +1,5 @@
 #version 330 core
+#define PI 3.14159
 
 in vec2 texCoords;
 
@@ -14,12 +15,21 @@ uniform int sharpness;
 uniform int blur;
 uniform int inverted;
 uniform int rave;
+uniform int swirl;
+
+
+
 
 uniform float time;
 
 
 uniform float scr_height;
 uniform float scr_width;
+
+
+//float radius = 0.5f;
+//float radius = 0.5f;
+
 
 float near = 0.1f;
 float far = 80.0f;
@@ -138,9 +148,43 @@ void main()
 		Fragcolor = Blur();
 	}
 
-	if(basicSample == 0)
-		Fragcolor = vec4(vec3(texture(screenTexture, texCoords)), 1.0f);
+	if (swirl != 0)
+	{
+		basicSample = 1;
+		//vec2 p = -1.0 + 2.0 * gl_FragCoord.xy / vec2(scr_width, scr_height);
+		//vec2 uv;
+		//float a = atan(p.y, p.x) / (3 * 3.1416);
+		//float r = sqrt(dot(p, p)) / sqrt(1.0);
+		//uv.x = r;
+		//uv.y = a + r;
+		//vec3 col = texture2D(screenTexture, uv).xyz;
+		//Fragcolor = vec4(col, 1.0);
 
+		float effectRadius = 1;
+		float effectAngle = 2. * PI;
+
+		vec2 center = vec2(scr_width / 2, scr_height / 2) / vec2(scr_width, scr_height);
+		center = center == vec2(0., 0.) ? vec2(.5, .5) : center;
+
+		vec2 uv = gl_FragCoord.xy / vec2(scr_width, scr_height) - center;
+
+		float len = length(uv * vec2(scr_width / scr_height, 1.0));
+		float angle = atan(uv.y, uv.x) + effectAngle * smoothstep(effectRadius, 0., len);
+		float radius = length(uv);
+
+		Fragcolor = texture(screenTexture, vec2(radius * cos(angle), radius * sin(angle)) + center);
+
+
+	}
+
+	if (basicSample == 0)
+	{
+		//float r = sqrt((gl_FragCoord.x/scr_width - 0.5) * (gl_FragCoord.x / scr_width- 0.5) + (gl_FragCoord.y / scr_height - 0.5) * (gl_FragCoord.y / scr_height - 0.5));
+
+		//Fragcolor = vec4(r, 0.0f, 1-r, 1.0f);
+		Fragcolor = texture(screenTexture, texCoords);
+
+	}
 
 
 
