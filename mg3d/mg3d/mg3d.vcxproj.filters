@@ -104,6 +104,9 @@
     <ClCompile Include="Utility.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Fish.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\shaders\skybox_vert.shader">
@@ -241,6 +244,9 @@
       <Filter>Header Files\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Water.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Fish.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

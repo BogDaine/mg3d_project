@@ -150,6 +150,7 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Cfg.cpp" />
     <ClCompile Include="Entity.cpp" />
+    <ClCompile Include="Fish.cpp" />
     <ClCompile Include="glfwstuff.cpp" />
     <ClCompile Include="InputHandler.cpp" />
     <ClCompile Include="main.cpp" />
@@ -196,6 +197,7 @@
     <ClInclude Include="Cfg.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="Entity.h" />
+    <ClInclude Include="Fish.h" />
     <ClInclude Include="glfwstuff.h" />
     <ClInclude Include="Water.h" />
     <ClInclude Include="Terrain.h" />

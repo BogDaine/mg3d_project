@@ -4,6 +4,7 @@
 #include "Cfg.h"
 #include "Models.h"
 #include "Utility.h"
+#include "Fish.h"
 
 Scene::Scene()
 {
@@ -120,6 +121,65 @@ void Scene::SetupSeaStuff()
 				position,
 				glm::vec3(0.0f, rotY, 0.0f),
 				glm::vec3(scaleX, scaleY, scaleZ)));
+		}
+	}
+
+
+	for (unsigned int i = 0; i < 30; i++)
+	{
+		float TerrainHeight;
+
+		auto posX = util::random_float(0.0f, 1.0f) * imgWidth;
+		auto posZ = util::random_float(0.0f, 1.0f) * imgHeight;
+
+		if ((int)posX < imgHeight && (int)posZ < imgWidth)
+		{
+			TerrainHeight = HeightMap->operator[]((int)posX* imgWidth + posZ).Position.y * m_TerrainScale.y;
+
+			if (TerrainHeight > m_WaterLevel - 2.0f)
+			{
+				continue;
+			}
+
+			auto position = glm::vec3(
+				(float)posX * m_TerrainScale.x / imgWidth + m_TerrainTranslation.x,
+				TerrainHeight,
+				(float)posZ * m_TerrainScale.z / imgHeight + m_TerrainTranslation.z
+			);
+			//DummySubmarine1.Rotate(0, 0, glm::radians(90.0f));
+			//
+			//DummySubmarine.Scale(0.1, 0.1, 0.1);
+			auto scaleX = util::random_float(0.4f, 1.2f) * 0.1f;// * 0.2f;
+			auto scaleY = util::random_float(0.4f, 1.2f) * 0.1f;// * 0.2f;
+			auto scaleZ = util::random_float(0.4f, 1.2f) * 0.1f;// * 0.2f;
+
+			auto rotX = util::random_float(0.0f, glm::radians(360.0f));
+			auto rotY = util::random_float(0.0f, glm::radians(360.0f));
+			auto rotZ = util::random_float(0.0f, glm::radians(360.0f));
+
+			float randomNumber = util::random_float(0.0f, 1.0f);
+
+			Model* model3d;
+			if (randomNumber >= 0.5f)
+			{
+				model3d = models::Fish2;
+			}
+			else 
+				model3d = models::Fish1;
+
+			float speed = util::random_float(0.0f, 0.0f);
+			float speedX = util::random_float(0.0f, 0.2f);
+			float speedY = util::random_float(0.0f, 0.2f);
+			float speedZ = util::random_float(0.0f, 0.2f);
+
+			PushEntity(new Fish(
+					model3d,
+					position,
+					glm::vec3(rotX, rotY, rotZ),
+					glm::vec3(scaleX, scaleY, scaleZ),
+					speed,
+					glm::vec3(speedX, speedY, speedZ))
+				);
 		}
 	}
 
