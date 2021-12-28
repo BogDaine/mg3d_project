@@ -125,7 +125,7 @@ void Scene::SetupSeaStuff()
 	}
 
 
-	for (unsigned int i = 0; i < 30; i++)
+	for (unsigned int i = 0; i < 300; i++)
 	{
 		float TerrainHeight;
 
@@ -149,9 +149,9 @@ void Scene::SetupSeaStuff()
 			//DummySubmarine1.Rotate(0, 0, glm::radians(90.0f));
 			//
 			//DummySubmarine.Scale(0.1, 0.1, 0.1);
-			auto scaleX = util::random_float(0.4f, 1.2f) * 0.1f;// * 0.2f;
-			auto scaleY = util::random_float(0.4f, 1.2f) * 0.1f;// * 0.2f;
-			auto scaleZ = util::random_float(0.4f, 1.2f) * 0.1f;// * 0.2f;
+			auto scaleX = util::random_float(0.4f, 1.2f) * 0.08f;// * 0.2f;
+			auto scaleY = util::random_float(0.4f, 1.2f) * 0.08f;// * 0.2f;
+			auto scaleZ = util::random_float(0.4f, 1.2f) * 0.08f;// * 0.2f;
 
 			auto rotX = util::random_float(0.0f, glm::radians(360.0f));
 			auto rotY = util::random_float(0.0f, glm::radians(360.0f));
@@ -168,9 +168,9 @@ void Scene::SetupSeaStuff()
 				model3d = models::Fish1;
 
 			float speed = util::random_float(0.0f, 0.0f);
-			float speedX = util::random_float(0.0f, 0.2f);
-			float speedY = util::random_float(0.0f, 0.2f);
-			float speedZ = util::random_float(0.0f, 0.2f);
+			float speedX = util::random_float(0.0f, 0.1f);
+			float speedY = util::random_float(0.0f, 0.1f);
+			float speedZ = util::random_float(0.0f, 0.1f);
 
 			PushEntity(new Fish(
 					model3d,
