@@ -38,7 +38,7 @@ void Scene::SetupSeaStuff()
 	constexpr float pi = glm::pi<float>();
 	float N = 3, M = 3;
 	float r = 50;
-	
+
 	std::vector<Vertex>* HeightMap;
 	int imgWidth, imgHeight;
 	HeightmapInfo(HeightMap, imgWidth, imgHeight);
@@ -46,14 +46,14 @@ void Scene::SetupSeaStuff()
 	for (float n = 0; n < 40; n++)
 	{
 
-		
+
 
 		float TerrainHeight;
-		
-		auto posX = util::random_float(0.0f, 1.0f) * imgWidth; 
+
+		auto posX = util::random_float(0.0f, 1.0f) * imgWidth;
 		auto posZ = util::random_float(0.0f, 1.0f) * imgHeight;
-		
-		if ((int)posX < imgHeight && (int) posZ < imgWidth)
+
+		if ((int)posX < imgHeight && (int)posZ < imgWidth)
 		{
 			TerrainHeight = HeightMap->operator[]((int)posX* imgWidth + posZ).Position.y * m_TerrainScale.y;
 
@@ -157,32 +157,53 @@ void Scene::SetupSeaStuff()
 			auto rotY = util::random_float(0.0f, glm::radians(360.0f));
 			auto rotZ = util::random_float(0.0f, glm::radians(360.0f));
 
-			float randomNumber = util::random_float(0.0f, 1.0f);
+
+			float randomNumber = util::random_float(0.0f, 3.5f);
 
 			Model* model3d;
-			if (randomNumber >= 0.5f)
+			if (randomNumber <= 0.5f)
 			{
-				model3d = models::Fish2;
+				model3d = models::Dolphin;
+
+				scaleX = util::random_float(0.1f, 0.1f) * 0.07f;// * 0.2f;
+				scaleY = util::random_float(0.1f, 0.1f) * 0.07f;// * 0.2f;
+				scaleZ = util::random_float(0.1f, 0.1f) * 0.07f;// * 0.2f;
 			}
-			else 
+			else if (randomNumber > 0.5f && randomNumber <= 1.0f)
+			{
+				model3d = models::Turtle;
+
+				scaleX = util::random_float(0.1f, 0.1f) * 0.08f;// * 0.2f;
+				scaleY = util::random_float(0.1f, 0.1f) * 0.08f;// * 0.2f;
+				scaleZ = util::random_float(0.1f, 0.1f) * 0.08f;// * 0.2f;
+			}
+			else if (randomNumber > 1.0f && randomNumber <= 1.5f)
+				model3d = models::Fish3;
+			else if (randomNumber > 1.5f && randomNumber <= 2.0f)
+				model3d = models::Octopus;
+			else if (randomNumber > 2.0f && randomNumber <= 2.5f)
+				model3d = models::Fish2;
+			else if (randomNumber > 2.5f && randomNumber <= 3.0f)
 				model3d = models::Fish1;
+			else
+				model3d = models::Fish4;
+
 
 			float speed = util::random_float(0.0f, 0.0f);
-			float speedX = util::random_float(0.0f, 0.1f);
-			float speedY = util::random_float(0.0f, 0.1f);
-			float speedZ = util::random_float(0.0f, 0.1f);
+			float speedX = util::random_float(0.0f, 0.2f);
+			float speedY = util::random_float(0.0f, 0.2f);
+			float speedZ = util::random_float(0.0f, 0.2f);
 
 			PushEntity(new Fish(
-					model3d,
-					position,
-					glm::vec3(rotX, rotY, rotZ),
-					glm::vec3(scaleX, scaleY, scaleZ),
-					speed,
-					glm::vec3(speedX, speedY, speedZ))
-				);
+				model3d,
+				position,
+				glm::vec3(rotX, rotY, rotZ),
+				glm::vec3(scaleX, scaleY, scaleZ),
+				speed,
+				glm::vec3(speedX, speedY, speedZ))
+			);
 		}
 	}
-
 
 }
 
@@ -192,13 +213,13 @@ void Scene::SetTerrain(const std::string& imagePath)
 	m_HasTerrain = true;
 }
 
-void Scene::SetTerrain(Terrain *terrain)
+void Scene::SetTerrain(Terrain* terrain)
 {
 	m_Terrain = terrain;
 	m_HasTerrain = true;
 }
 
-void Scene::SetWater(Terrain *water)
+void Scene::SetWater(Terrain* water)
 {
 	m_Water = water;
 }
@@ -208,7 +229,7 @@ void Scene::HeightmapInfo(std::vector<Vertex>*& vertices, int& imgWidth, int& im
 	m_Terrain->HeightmapInfo(vertices, imgWidth, imgHeight);
 }
 
-void Scene::PushEntity(Entity *entity)
+void Scene::PushEntity(Entity* entity)
 {
 	entity->SetSceneRef(this);
 	m_Entities.push_back(entity);
@@ -217,8 +238,8 @@ void Scene::PushEntity(Entity *entity)
 glm::mat4 Scene::TerrainModelMatrix()
 {
 	return glm::scale(
-			glm::translate(
-				glm::mat4(1.0), m_TerrainTranslation),
+		glm::translate(
+			glm::mat4(1.0), m_TerrainTranslation),
 		m_TerrainScale);
 }
 
@@ -245,10 +266,10 @@ void Scene::InitShadowMap()
 	GLCall(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_BORDER));
 	float borderColor[] = { 1.0, 1.0, 1.0, 1.0 };
 	GLCall(glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, borderColor));
-	
+
 	// attach depth texture as FBO's depth buffer
-	
-	
+
+
 	GLCall(glGenFramebuffers(1, &m_DepthMapFBO));
 	GLCall(glBindFramebuffer(GL_FRAMEBUFFER, m_DepthMapFBO));
 	GLCall(glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D, m_DepthMap, 0));
@@ -265,12 +286,12 @@ void Scene::Update()
 	}
 }
 
-void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO, const bool& underwater, const bool &shadowmap)
+void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint& FBO, const bool& underwater, const bool& shadowmap)
 {
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function
 	m_PointLight1.position = glm::vec3(1.0f, 45.0f, 1.0f);
-	m_PointLight1.ambient = {0.3, 0.3, 0.5};
+	m_PointLight1.ambient = { 0.3, 0.3, 0.5 };
 	//m_PointLight1.position = pCamera->GetPosition();
 	glm::mat4 lightProjection, lightView;
 	glm::mat4 lightSpaceMatrix;
@@ -363,13 +384,13 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint &FBO, const bool&
 
 		m_Water->Draw();
 	}
-	
+
 	if (m_Skybox && !underwater)
 	{
 		m_Skybox->Draw(pCamera);
 	}
-	
+
 	//also draw lights that need to be drawn;
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
-		
+
 }

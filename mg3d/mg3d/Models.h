@@ -8,6 +8,11 @@ namespace models
 	extern Model* Coral2;
 	extern Model* Fish1;
 	extern Model* Fish2;
+	extern Model* Turtle;
+	extern Model* Dolphin;
+	extern Model* Fish3;
+	extern Model* Fish4;
+	extern Model* Octopus;
 
 	void InitModels();
 }
