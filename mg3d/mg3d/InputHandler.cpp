@@ -24,6 +24,11 @@ void InputHandler::BindSubmarine(Submarine *sub)
 	m_BoundSubmarine = sub;
 }
 
+void InputHandler::BindScene(Scene* sc)
+{
+	scene = sc;
+}
+
 void InputHandler::HandleTheInput()
 {
 	switch (m_InputMode)
@@ -56,8 +61,15 @@ void InputHandler::HandleTheInput()
 
 		if (key_pressed[GLFW_KEY_SPACE])
 			m_BoundSubmarine->HandleInput(eSubmarineControl::UP);
+
 		if (key_pressed[GLFW_KEY_LEFT_SHIFT])
 			m_BoundSubmarine->HandleInput(eSubmarineControl::DOWN);
+
+		if (key_pressed[GLFW_KEY_Z])
+			scene->HandleKey(eDayNightControl::DAY);
+
+		if (key_pressed[GLFW_KEY_N])
+			scene->HandleKey(eDayNightControl::NIGHT);
 
 		break;
 

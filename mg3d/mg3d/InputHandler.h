@@ -18,6 +18,7 @@ protected:
 	GLFWwindow* m_BoundWindow = nullptr;
 	Camera* m_BoundCamera = nullptr;
 	Submarine* m_BoundSubmarine = nullptr;
+	Scene* scene = nullptr;
 	
 	int m_InputMode = eInputMode::CAMERA_FIRST_PERSON;
 
@@ -29,6 +30,8 @@ public:
 	InputHandler(GLFWwindow*, Camera*);
 
 	void BindSubmarine(Submarine*);
+
+	void BindScene(Scene*);
 
 	void HandleTheInput();
 

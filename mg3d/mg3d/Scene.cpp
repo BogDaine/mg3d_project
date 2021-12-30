@@ -319,9 +319,16 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint& FBO, const bool&
 {
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function
+
+	if (dayNight)
+		m_PointLight1 = lights::WHITE;
+	else
+		m_PointLight1 = lights::NIGHTMODE;
+
 	m_PointLight1.position = glm::vec3(1.0f, 45.0f, 1.0f);
 	m_PointLight1.ambient = { 0.3, 0.3, 0.5 };
 	//m_PointLight1.position = pCamera->GetPosition();
+
 	glm::mat4 lightProjection, lightView;
 	glm::mat4 lightSpaceMatrix;
 	float near_plane = 0.3f, far_plane = 250.0f;
@@ -388,10 +395,18 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint& FBO, const bool&
 
 	if (m_Water)
 	{
-		if (m_Skybox)
+		if (dayNight)
 		{
-			shaders::Water->SetInt("skybox", 0);
+			if (m_Skybox)
+			{
+				shaders::Water->SetInt("skybox", 0);
+			}
 		}
+		else
+			if (m_Skybox2)
+			{
+				shaders::Water->SetInt("skybox", 0);
+			}
 
 		glm::mat4 model(1.0f);
 		model = glm::translate(model, m_TerrainTranslation + glm::vec3(0.0f, m_WaterLevel - 0.4f, 0.0f));
@@ -414,12 +429,35 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint& FBO, const bool&
 		m_Water->Draw();
 	}
 
-	if (m_Skybox && !underwater)
+	if (dayNight)
 	{
-		m_Skybox->Draw(pCamera);
+		if (m_Skybox && !underwater)
+		{
+			m_Skybox->Draw(pCamera);
+		}
 	}
+	else
+		if (m_Skybox2 && !underwater)
+		{
+			m_Skybox2->Draw(pCamera);
+		}
 
 	//also draw lights that need to be drawn;
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
+}
+
+void Scene::HandleKey(const eDayNightControl& command)
+{
+	switch (command)
+	{
+
+	case eDayNightControl::DAY:
+		dayNight = true;
+		break;
+	case eDayNightControl::NIGHT:
+		dayNight = false;
+		break;
+
+	}
 }

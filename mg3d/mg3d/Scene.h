@@ -45,6 +45,8 @@ protected:
 	//(for each type of light, probably)
 	//each with its own Depth Map
 
+	bool dayNight = true;
+
 public:
 	Scene();
 
@@ -85,4 +87,6 @@ public:
 	virtual void Update();
 
 	virtual void Draw(Camera* pCamera, Shader* shader, const GLuint&, const bool& underwater, bool day_night, const bool& shadowmap = 1);
+
+	void HandleKey(const eDayNightControl& command);
 };
