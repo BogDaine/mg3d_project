@@ -68,18 +68,34 @@ void Scene::SetupSeaStuff()
 				(float)posZ * m_TerrainScale.z / imgHeight + m_TerrainTranslation.z
 			);
 
-			auto scaleX = util::random_float(0.05f, 0.1f);// * 0.2f;
-			auto scaleY = util::random_float(0.05f, 0.1f);// * 0.2f;
-			auto scaleZ = util::random_float(0.05f, 0.1f);// * 0.2f;
+			auto scaleX = util::random_float(0.5f, 0.5f);// * 0.2f;
+			auto scaleY = util::random_float(0.5f, 0.5f);// * 0.2f;
+			auto scaleZ = util::random_float(0.5f, 0.5f);// * 0.2f;
 
 			auto rotX = util::random_float(0.0f, glm::radians(360.0f));
 			auto rotY = util::random_float(0.0f, glm::radians(360.0f));
 			auto rotZ = util::random_float(0.0f, glm::radians(360.0f));
 
-			PushEntity(new VisibleEntity(models::Coral2,
-				position,
-				glm::vec3(glm::radians(-90.0f), 0.0f, rotZ),
-				glm::vec3(scaleX, scaleY, scaleZ)));
+			float randomNumber = util::random_float(0.0f, 1.0f);
+
+			if (randomNumber <= 0.5f)
+			{
+				PushEntity(new VisibleEntity(models::Coral1,
+					position,
+					glm::vec3(0.0f, rotY, 0.0f),
+					glm::vec3(scaleX, scaleY, scaleZ)));
+			}
+			else
+			{
+				scaleX = util::random_float(0.8f, 0.8f);// * 0.2f;
+				scaleY = util::random_float(0.8f, 0.8f);// * 0.2f;
+				scaleZ = util::random_float(0.8f, 0.8f);// * 0.2f;
+
+				PushEntity(new VisibleEntity(models::Coral3,
+					position,
+					glm::vec3(0.0f, rotY, 0.0f),
+					glm::vec3(scaleX, scaleY, scaleZ)));
+			}
 		}
 	}
 
