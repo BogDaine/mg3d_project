@@ -315,7 +315,7 @@ void Scene::Update()
 	}
 }
 
-void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint& FBO, const bool& underwater, const bool& shadowmap)
+void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint& FBO, const bool& underwater, bool day_night, const bool& shadowmap)
 {
 	auto normal_mat = glm::mat3(glm::transpose(glm::inverse(glm::mat4(1))));
 	//TO DO: Make this a separate function

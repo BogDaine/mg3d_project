@@ -18,7 +18,7 @@ void Renderer::Clear()
 
 static bool underwater = false;
 
-void Renderer::DrawScene(Scene& scene, Camera* pCamera)
+void Renderer::DrawScene(Scene& scene, Camera* pCamera, bool day_night)
 {
 	FBO->Bind();
 	//glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -26,7 +26,7 @@ void Renderer::DrawScene(Scene& scene, Camera* pCamera)
 	glEnable(GL_DEPTH_TEST);
 
 	//scene.Draw(pCamera, shaders::BasicDepth, DFBO->GetID(), false);
-	scene.Draw(pCamera, shaders::DefaultObjShadows, FBO->GetID(), underwater);
+	scene.Draw(pCamera, shaders::DefaultObjShadows, FBO->GetID(), underwater, day_night);
 
 	glDisable(GL_DEPTH_TEST);
 

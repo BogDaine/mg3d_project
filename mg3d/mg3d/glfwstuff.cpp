@@ -68,10 +68,7 @@ void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera, InputHandler*
 		//draw everything here, or in separate function(s) called here, probably
 		
 
-
-		Renderer::DrawScene(scene, pCamera);
-
-
+		Renderer::DrawScene(scene, pCamera, day_night);
 
 		scene.Update();
 		pCamera->Update();
