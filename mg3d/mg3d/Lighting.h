@@ -86,4 +86,9 @@ namespace lights
 					glm::vec3(0.3f, 0.5f, 0.3f),
 					glm::vec3(0.5f, 1.0f, 0.5f),
 					glm::vec3(0.5f, 1.0f, 0.5f) };
+	const Light NIGHTMODE{ glm::vec3(0.0f, 0.0f, 0.0f),
+					glm::vec3(0.0f, 0.0f, 0.0f),
+					glm::vec3(0.0f, 0.0f, 0.0f),
+					glm::vec3(0.0f, 0.0f, 0.0f) };
+
 }

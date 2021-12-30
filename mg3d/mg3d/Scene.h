@@ -8,6 +8,12 @@
 
 #include "Terrain.h"
 
+enum class eDayNightControl
+{
+	DAY,
+	NIGHT
+};
+
 class Shader;
 
 class Skybox;
