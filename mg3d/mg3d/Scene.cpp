@@ -27,11 +27,24 @@ void Scene::SetSkybox(const GLuint& cubemap)
 	m_Skybox = new Skybox(cubemap);
 }
 
+void Scene::SetSkybox2(const GLuint& cubemap)
+{
+	delete(m_Skybox2);
+	m_Skybox2 = new Skybox(cubemap);
+}
+
 void Scene::SetSkybox(std::vector<std::string>& faces)
 {
 	delete(m_Skybox);
 	m_Skybox = new Skybox(faces);
 }
+
+void Scene::SetSkybox2(std::vector<std::string>& faces)
+{
+	delete(m_Skybox2);
+	m_Skybox2 = new Skybox(faces);
+}
+
 
 void Scene::SetupSeaStuff()
 {

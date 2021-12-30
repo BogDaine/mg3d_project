@@ -17,6 +17,7 @@ class Scene
 {
 protected:
 	Skybox* m_Skybox = nullptr;
+	Skybox* m_Skybox2 = nullptr;
 	Terrain* m_Terrain = nullptr;
 	Terrain* m_Water = nullptr;
 
@@ -47,8 +48,12 @@ public:
 	
 	void SetSkybox(const GLuint&);
 	
+	void SetSkybox2(const GLuint&);
+
 	void SetSkybox(std::vector<std::string>&);
 
+	void SetSkybox2(std::vector<std::string>&);
+	
 	void SetupSeaStuff();
 
 	void SetTerrain(const std::string&);

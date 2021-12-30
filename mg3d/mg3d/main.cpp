@@ -184,7 +184,8 @@
 int main()
 {
 	GLFWwindow* window;
-	InitWindow(window, "titlu imaginativ");
+    InitWindow(window, "Submarine");
+
 
     //Placeholder code.
     //Will modify later
@@ -207,13 +208,28 @@ int main()
             "skybox/back.jpg"
     };
 
+
+    std::vector<std::string> facesN
+    {
+            "skybox/rightN.jpg",
+            "skybox/leftN.jpg",
+            "skybox/topN.jpg",
+            "skybox/bottomN.jpg",
+            "skybox/frontN.jpg",
+            "skybox/backN.jpg"
+    };
+
+
     models::InitModels();
     shaders::InitShaders();
 
-    
+    bool day_night = true;
 
 
     scene.SetSkybox(faces);
+    scene.SetSkybox2(facesN);
+
+    
     Submarine DummySubmarine({ 0, 10, 0 });
     Submarine DummySubmarine1({ 13, 45, 0 });
     DummySubmarine1.Rotate(0, 0, glm::radians(90.0f));
