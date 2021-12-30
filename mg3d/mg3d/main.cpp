@@ -281,7 +281,7 @@ int main()
 
     scene.SetupSeaStuff();
 
-	WindowLoop(window, scene, pCamera, &input);
+    WindowLoop(window, scene, pCamera, &input, day_night);
 
     return 0;
 }

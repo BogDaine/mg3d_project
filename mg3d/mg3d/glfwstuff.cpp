@@ -55,7 +55,7 @@ void InitWindow(GLFWwindow* &window, const std::string& title)
 
 }
 
-void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera, InputHandler* inputHandler)
+void WindowLoop(GLFWwindow* window, Scene& scene, Camera* pCamera, InputHandler* inputHandler, bool day_night)
 {
 	while (!glfwWindowShouldClose(window))
 	{
