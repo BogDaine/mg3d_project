@@ -239,6 +239,8 @@ int main()
     DummySubmarine.Scale(0.1, 0.1, 0.1);
     input.BindSubmarine(&DummySubmarine);
 
+    input.BindScene(&scene);
+
     /*constexpr float pi = glm::pi<float>();
     float N = 10, M = 10;
     float r = 200;
