@@ -39,6 +39,7 @@ public:
 	void Draw();
 
 	void SetTexture1(const std::string&);
+	void SetTexture1(const unsigned int&);
 
 	static std::vector<Vertex> LoadHeightmap(const std::string& LoadHeightmap, int& HMImgWidth, int& HMImgHeight);
 };

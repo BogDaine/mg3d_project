@@ -267,11 +267,8 @@ int main()
     //terrain.SetTexture1("..\\Assets\\Misc_textures\\Grass.jpg");
 
     Terrain water("..\\Assets\\Heightmaps\\water.png");
-
-    if (day_night)
-        water.SetTexture1("..\Assets\Misc_textures\water2.jpg");
-    else
-        water.SetTexture1("..\Assets\Misc_textures\water2N.jpg");
+    water.SetTexture1("..\\Assets\\Misc_textures\\water2.jpg");
+    shaders::DefaultObjShadows->SetVec3("fogColor", glm::vec3(0.13f, 0.1f, 0.4f));
 
     scene.SetTerrain(&terrain);
     scene.SetWater(&water);

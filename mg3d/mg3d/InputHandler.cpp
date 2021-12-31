@@ -183,6 +183,12 @@ void InputHandler::KeyEvent(int key, int scancode, int action, int mods)
 			case GLFW_KEY_C:
 				m_BoundCamera->CycleModes();
 				break;
+			case GLFW_KEY_V:
+				m_BoundCamera->SetMode(ECameraMode::STATIONARY_BOUND);
+				break;
+			case GLFW_KEY_B:
+				m_BoundCamera->SetMode(ECameraMode::FIRST_PERSON);
+				break;
 			}
 			
 			break;

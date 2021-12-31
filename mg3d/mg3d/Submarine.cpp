@@ -22,8 +22,8 @@ void Submarine::CollisionCheck()
 	{
 		TerrainHeight = HeightMap->operator[]((int)terrainX* imgWidth + terrainZ).Position.y * m_SceneRef->TerrainScale().y;
 		//std::cout << TerrainHeight << std::endl;
-		if (m_Pos.y < TerrainHeight + 0.02)
-			m_Pos.y = TerrainHeight + 0.02;
+		if (m_Pos.y < TerrainHeight + 0.4)
+			m_Pos.y = TerrainHeight + 0.4;
 	}
 	//std::cout << std::endl;
 }

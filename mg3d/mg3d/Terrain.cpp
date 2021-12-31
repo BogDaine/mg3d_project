@@ -63,7 +63,13 @@ void Terrain::Draw()
 void Terrain::SetTexture1(const std::string& imagePath)
 {
 	//m_Texture1 = new Texture(imagePath);
+	glDeleteTextures(1, &m_Texture1);
 	m_Texture1 = Texture::CreateTexture(imagePath);
+}
+
+void Terrain::SetTexture1(const unsigned int &texture)
+{
+	m_Texture1 = texture;
 }
 
 std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWidth, int& HMImgHeight)
@@ -176,10 +182,10 @@ std::vector<Vertex> Terrain::LoadHeightmap(const std::string& path, int& HMImgWi
 				// Store final Normal of j-th vertex in i-th row
 				//std::swap(finalVertexNormal.y, finalVertexNormal.z);
 				//std::swap(finalVertexNormal.y, finalVertexNormal.x);
-				//finalVertexNormal.x = -finalVertexNormal.x;
-				//finalVertexNormal.y = -finalVertexNormal.y;
-				//finalVertexNormal.z = -finalVertexNormal.z;
-				heightmap[i * HMImgHeight + j].Normal = -glm::normalize(finalVertexNormal);
+				finalVertexNormal.x = finalVertexNormal.x;
+				finalVertexNormal.y = -finalVertexNormal.y;
+				finalVertexNormal.z = finalVertexNormal.z;
+				heightmap[i * HMImgHeight + j].Normal = glm::normalize(finalVertexNormal);
 
 				/*std::cout << heightmap[i * HMImgHeight + j].Normal.x << " " <<
 					heightmap[i * HMImgHeight + j].Normal.y << " " <<

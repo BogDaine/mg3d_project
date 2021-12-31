@@ -57,6 +57,7 @@ uniform float zNear;
 uniform float zFar;
 
 uniform int underwater;
+uniform vec3 fogColor;
 
 vec3 calculateGlobalPointLight() { return vec3(1.0f, 1.0f, 1.0f); }
 vec3 calculatePointLight() { return vec3(1.0f, 1.0f, 1.0f); }
@@ -109,7 +110,7 @@ float LinearizeDepth(float depth)
 
 float LogisticDepth(float depth)
 {
-	float steepness = 0.1f, offset = 5.0f;
+	float steepness = 0.1f, offset = 8.0f;
 	float zVal = LinearizeDepth(depth);
 	return (1 / (1 + exp(-steepness * (zVal - offset))));
 }
@@ -144,6 +145,7 @@ void main()
 	{
 		float depth = LogisticDepth(gl_FragCoord.z);// / far;
 	//gl_FragDepth = depth;
-		Fragcolor = vec4(vec3(Fragcolor) * (1 - depth) + depth * vec3(0.1f, 0.1f, 0.4f), 1.0f);
+		Fragcolor = vec4(vec3(Fragcolor) * (1 - depth) + depth * fogColor, 1.0f);
+		// vec3(0.1f, 0.1f, 0.4f)
 	}
 }

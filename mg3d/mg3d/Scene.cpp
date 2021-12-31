@@ -9,6 +9,10 @@
 Scene::Scene()
 {
 	m_PointLight1.position = { 12, 10, 15 };
+
+	m_WaterTexture_day = Texture::CreateTexture("..\\Assets\\Misc_textures\\water2.jpg");
+	m_WaterTexture_night = Texture::CreateTexture("..\\Assets\\Misc_textures\\water2N.jpg");
+
 }
 
 float Scene::WaterLevel() const
@@ -100,9 +104,9 @@ void Scene::SetupSeaStuff()
 			}
 			else
 			{
-				scaleX = util::random_float(0.8f, 0.8f);// * 0.2f;
-				scaleY = util::random_float(0.8f, 0.8f);// * 0.2f;
-				scaleZ = util::random_float(0.8f, 0.8f);// * 0.2f;
+				scaleX = util::random_float(0.4f, 0.8f);// * 0.2f;
+				scaleY = util::random_float(0.4f, 0.8f);// * 0.2f;
+				scaleZ = util::random_float(0.4f, 0.8f);// * 0.2f;
 
 				PushEntity(new VisibleEntity(models::Coral3,
 					position,
@@ -138,17 +142,17 @@ void Scene::SetupSeaStuff()
 				(float)posZ * m_TerrainScale.z / imgHeight + m_TerrainTranslation.z
 			);
 
-			auto scaleX = util::random_float(0.4f, 1.2f);// * 0.2f;
-			auto scaleY = util::random_float(0.4f, 1.2f);// * 0.2f;
-			auto scaleZ = util::random_float(0.4f, 1.2f);// * 0.2f;
+			auto scaleX = util::random_float(0.28f, 0.63f)* 0.2f;
+			auto scaleY = util::random_float(0.28f, 0.63f)* 0.2f;
+			auto scaleZ = util::random_float(0.28f, 0.63f)* 0.2f;
 
 			auto rotX = util::random_float(0.0f, glm::radians(360.0f));
 			auto rotY = util::random_float(0.0f, glm::radians(360.0f));
 			auto rotZ = util::random_float(0.0f, glm::radians(360.0f));
 
-			PushEntity(new VisibleEntity(models::Coral1,
+			PushEntity(new VisibleEntity(models::Coral2,
 				position,
-				glm::vec3(0.0f, rotY, 0.0f),
+				glm::vec3(glm::radians(-90.0f), 0.0, 0.0f),
 				glm::vec3(scaleX, scaleY, scaleZ)));
 		}
 	}
@@ -321,12 +325,19 @@ void Scene::Draw(Camera* pCamera, Shader* shader, const GLuint& FBO, const bool&
 	//TO DO: Make this a separate function
 
 	if (dayNight)
+	{
 		m_PointLight1 = lights::WHITE;
-	else
-		m_PointLight1 = lights::NIGHTMODE;
+		m_PointLight1.ambient = { 0.3, 0.3, 0.5 };
 
+	}
+	else
+	{
+		m_PointLight1 = lights::NIGHTMODE;
+		m_PointLight1.diffuse = { 0.6f, 0.4f, 0.6f };
+		m_PointLight1.ambient = { 0.18, 0.15, 0.3 };
+	}
 	m_PointLight1.position = glm::vec3(1.0f, 45.0f, 1.0f);
-	m_PointLight1.ambient = { 0.3, 0.3, 0.5 };
+	//m_PointLight1.ambient = { 0.3, 0.3, 0.5 };
 	//m_PointLight1.position = pCamera->GetPosition();
 
 	glm::mat4 lightProjection, lightView;
@@ -454,9 +465,16 @@ void Scene::HandleKey(const eDayNightControl& command)
 
 	case eDayNightControl::DAY:
 		dayNight = true;
+		shaders::DefaultObjShadows->SetVec3("fogColor", glm::vec3(0.13f, 0.1f, 0.4f));
+		//shaders::DefaultObjShadows->SetVec3("fogColor", glm::vec3(0.1f, 0.1f, 0.4f));
+		m_Water->SetTexture1(m_WaterTexture_day);
+		glClearColor(0.270, 0.670, 0.929, 1.0);
 		break;
 	case eDayNightControl::NIGHT:
 		dayNight = false;
+		shaders::DefaultObjShadows->SetVec3("fogColor", glm::vec3(0.05f, 0.05f, 0.2f));
+		m_Water->SetTexture1(m_WaterTexture_night);
+		glClearColor(0.2f, 0.2f, 0.4f, 1.0f);
 		break;
 
 	}

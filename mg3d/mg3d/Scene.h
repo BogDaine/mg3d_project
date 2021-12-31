@@ -40,10 +40,9 @@ protected:
 
 	GLuint m_DepthMap = 0;
 	GLuint m_DepthMapFBO = 0;
-	//TO DO:
-	//vector for the lights
-	//(for each type of light, probably)
-	//each with its own Depth Map
+
+	GLuint m_WaterTexture_night;
+	GLuint m_WaterTexture_day;
 
 	bool dayNight = true;
 
