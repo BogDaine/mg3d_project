@@ -104,9 +104,9 @@ void Scene::SetupSeaStuff()
 			}
 			else
 			{
-				scaleX = util::random_float(0.4f, 0.8f);// * 0.2f;
-				scaleY = util::random_float(0.4f, 0.8f);// * 0.2f;
-				scaleZ = util::random_float(0.4f, 0.8f);// * 0.2f;
+				scaleX = util::random_float(0.4f, 0.8f) * 0.008f;
+				scaleY = util::random_float(0.4f, 0.8f) * 0.008f;
+				scaleZ = util::random_float(0.4f, 0.8f) * 0.008f;
 
 				PushEntity(new VisibleEntity(models::Coral3,
 					position,
@@ -158,7 +158,7 @@ void Scene::SetupSeaStuff()
 	}
 
 
-	for (unsigned int i = 0; i < 300; i++)
+	for (unsigned int i = 0; i < 200; i++)
 	{
 		float TerrainHeight;
 

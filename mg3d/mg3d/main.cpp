@@ -280,6 +280,14 @@ int main()
 
     scene.SetupSeaStuff();
 
+    std::cout << std::endl << std::endl << std::endl;
+    std::cout << "CONTROLS:" << std::endl;
+    std::cout << "WASD - camera controls" << std::endl;
+    std::cout << "C, V, B - camera modes" << std::endl;
+    std::cout << "Arrow keys + space and left shift - Submarine controls" << std::endl;
+    std::cout << "1 - = - effects" << std::endl;
+
+
     WindowLoop(window, scene, pCamera, &input, day_night);
 
     return 0;

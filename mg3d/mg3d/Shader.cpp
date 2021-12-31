@@ -173,10 +173,10 @@ int Shader::GetUniformLocation(const std::string& name)
 
     GLCall(unsigned int location = glGetUniformLocation(ID, name.c_str()));
     //ASSERT(location != -1);
-    if (location == -1)
-    {
-        std::cout << "[WARNING]:" << " UNIFORM <" << name << "> does not exist" << std::endl;
-    }
+    //if (location == -1)
+    //{
+    //    std::cout << "[WARNING]:" << " UNIFORM <" << name << "> does not exist" << std::endl;
+    //}
     return uniformLocationCache[name] = location;
     //return location;
 }

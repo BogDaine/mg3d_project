@@ -12,7 +12,7 @@ void Model::LoadModel(const std::string& path)
 		return;
 	}
 	directory = path.substr(0, path.find_last_of('/'));
-
+	std::cout << "ASSIMP::" << "Loaded model " << path << std::endl;
 	std::cout << "scene has " << scene->mNumMeshes << " meshes." << std::endl;
 
 	processNode(scene->mRootNode, scene);
@@ -139,7 +139,7 @@ std::vector<Texture*> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType
 	// checks all material textures of a given type and loads the textures if they're not loaded yet.
 // the required info is returned as a Texture struct.
 
-	std::cout << "number of textures: " << mat->GetTextureCount(type) << "(" << type << ")" << std::endl;
+	//std::cout << "number of textures: " << mat->GetTextureCount(type) << "(" << type << ")" << std::endl;
 	std::vector<Texture*> textures;
 	textures.reserve(mat->GetTextureCount(type));
 
@@ -151,8 +151,8 @@ std::vector<Texture*> Model::loadMaterialTextures(aiMaterial* mat, aiTextureType
 		bool skip = false;
 		for (unsigned int j = 0; j < textures_loaded.size(); j++)
 		{
-			std::cout << textures_loaded[j]->getFileName().data() << std::endl;
-			std::cout << str.C_Str() << std::endl;
+			//std::cout << textures_loaded[j]->getFileName().data() << std::endl;
+			//std::cout << str.C_Str() << std::endl;
 			if (std::strcmp(textures_loaded[j]->getFileName().data(), str.C_Str()) == 0)
 			{
 				textures.push_back(textures_loaded[j]);

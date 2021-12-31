@@ -18,7 +18,7 @@ void models::InitModels()
 	models::Submarine1 = new Model("../Assets/Submarines/the_project_941__akula__typhoon_submarine_2/914_akula_submarine.gltf");
 	models::Coral1 = new Model("../Assets/models/seastuff/tree_coral/tree_coral.obj");
 	models::Coral2 = new Model("../Assets/models/seastuff/red_coral/red_coral.obj");
-	models::Coral3 = new Model("../Assets/models/seastuff/bubble_coral/21489_Bubble_coral_v1.obj");
+	models::Coral3 = new Model("../Assets/models/seastuff/bubble_coral/scene.gltf");
 	models::Fish1 = new Model("../Assets/models/seastuff/low_poly_fish/scene.gltf");
 	models::Fish2 = new Model("../Assets/models/seastuff/opah_fish/scene.gltf");
 	models::Turtle = new Model("../Assets/models/seastuff/sea_turtle/10042_Sea_Turtle_V2_iterations-2.obj");
